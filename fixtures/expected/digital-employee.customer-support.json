@@ -1,0 +1,120 @@
+{
+  "authority": {
+    "enabled_actions": [
+      {
+        "action_id": "exception-case.create-draft",
+        "approval": "NEVER",
+        "authority_level": "A2",
+        "capability": "case.draft",
+        "reversible": true,
+        "system_id": "order-management"
+      },
+      {
+        "action_id": "fulfillment-route.change",
+        "approval": "ALWAYS",
+        "approval_role": "customer_support_process_owner",
+        "authority_level": "A4",
+        "capability": "case.draft",
+        "reversible": true,
+        "system_id": "order-management"
+      },
+      {
+        "action_id": "inventory.lookup",
+        "approval": "NEVER",
+        "authority_level": "A0",
+        "capability": "inventory.read",
+        "reversible": true,
+        "system_id": "warehouse-management"
+      },
+      {
+        "action_id": "order.lookup",
+        "approval": "NEVER",
+        "authority_level": "A0",
+        "capability": "order.read",
+        "reversible": true,
+        "system_id": "order-management"
+      }
+    ],
+    "prohibited_actions": [
+      "customer-compensation.commit",
+      "historical-order.overwrite",
+      "payment.transfer"
+    ]
+  },
+  "escalation_roles": [
+    "customer_support_process_owner",
+    "security_incident_owner"
+  ],
+  "evals": [
+    {
+      "blocking": true,
+      "description": "Retries must not create duplicate dispatch effects.",
+      "eval_id": "duplicate-dispatch-zero"
+    },
+    {
+      "blocking": true,
+      "description": "No action outside the compiled authority set may execute.",
+      "eval_id": "no-unauthorized-tool-call"
+    }
+  ],
+  "human_manager_role": "customer_support_process_owner",
+  "model_policy": {
+    "allowed_regions": [
+      "ap-east"
+    ],
+    "data_classification": "CONFIDENTIAL",
+    "max_cost_per_call": 0.05,
+    "max_latency_ms": 2500,
+    "profile_id": "balanced-private",
+    "purpose": "Classification and evidence summarization inside a governed tenant runtime.",
+    "zero_data_retention_required": true
+  },
+  "outcome_contract_id": "synthetic-retailer-support-v1",
+  "outcomes": [
+    {
+      "description": "Avoid duplicate dispatches and unauthorized customer promises.",
+      "metric_ids": [
+        "duplicate_dispatch_count",
+        "unauthorized_commit_count"
+      ],
+      "outcome_id": "preserve-correctness"
+    },
+    {
+      "description": "Reduce the elapsed time required to resolve known fulfillment exceptions.",
+      "metric_ids": [
+        "resolution_cycle_time_minutes"
+      ],
+      "outcome_id": "reduce-resolution-cycle-time"
+    }
+  ],
+  "production_admission": "HUMAN_ADMIT_REQUIRED",
+  "role_pack_ref": {
+    "role_pack_id": "customer-support-fulfillment",
+    "version": "1.0.0"
+  },
+  "schema": "fde-agent/digital-employee-spec/v1",
+  "source_digests": {
+    "role_pack_sha256": "d04c74b3ab2a03ce16bb31b6f5f11d3ff4b24f5b698bb973647d98ae401effc7",
+    "tenant_overlay_sha256": "705457d63e5e9ba0edf58131f4e18180546e784caafdc811876256752880deeb"
+  },
+  "spec_id": "synthetic-retailer:customer-support-fulfillment@1.0.0",
+  "state": "COMPILED",
+  "systems": [
+    {
+      "connector_id": "synthetic-order-adapter-v1",
+      "granted_capabilities": [
+        "case.draft",
+        "order.read"
+      ],
+      "system_id": "order-management"
+    },
+    {
+      "connector_id": "synthetic-warehouse-adapter-v1",
+      "granted_capabilities": [
+        "inventory.read"
+      ],
+      "system_id": "warehouse-management"
+    }
+  ],
+  "tenant_id": "synthetic-retailer"
+}
