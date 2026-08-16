@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/policy-decision/v1",
+  "title": "PolicyDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "decision_id", "request_digest", "capability_digest", "outcome",
+    "reason_codes", "effective_action_class", "approval_required", "expires_at",
+    "decision_digest", "execution_admission"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/policy-decision/v1" },
+    "decision_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "request_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "capability_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "outcome": { "enum": ["ALLOW", "DENY", "APPROVAL_REQUIRED"] },
+    "reason_codes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "effective_action_class": { "enum": ["READ", "RECOMMEND", "DRAFT", "REVERSIBLE_ACTION", "APPROVED_COMMIT", "PROHIBITED"] },
+    "approval_required": { "type": "boolean" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "decision_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "execution_admission": { "enum": ["ELIGIBLE_CANDIDATE", "DENIED", "PENDING_HUMAN"] }
+  }
+}
