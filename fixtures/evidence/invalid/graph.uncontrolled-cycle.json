@@ -1,0 +1,3 @@
+{
+  "edge_id":"edge-draft-validate","from":"create-draft-case","to":"validate-mismatch","relation":"PRECEDES","condition":null,"controlled_cycle_id":null
+}
