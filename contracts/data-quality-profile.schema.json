@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/data-quality-profile/v1",
+  "title":"DataQualityProfile",
+  "type":"object","additionalProperties":false,
+  "required":["schema","profile_id","tenant_ref","task_id","source_subject","evaluated_at","fields","declared_overall_state"],
+  "properties":{
+    "schema":{"const":"fde-agent/data-quality-profile/v1"},
+    "profile_id":{"type":"string","pattern":"^[a-z][a-z0-9-]{2,63}$"},
+    "tenant_ref":{"type":"string","minLength":1},
+    "task_id":{"type":"string","minLength":1},
+    "source_subject":{"type":"object","additionalProperties":false,"required":["source_id","digest","schema_version"],"properties":{"source_id":{"type":"string","minLength":1},"digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"schema_version":{"type":"string","minLength":1}}},
+    "evaluated_at":{"type":"string","format":"date-time"},
+    "fields":{"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["field_path","critical","completeness","validity","uniqueness","consistency","observed_age_seconds","status","issue_codes"],"properties":{"field_path":{"type":"string","minLength":1},"critical":{"type":"boolean"},"completeness":{"type":"number","minimum":0,"maximum":1},"validity":{"type":"number","minimum":0,"maximum":1},"uniqueness":{"type":"number","minimum":0,"maximum":1},"consistency":{"type":"number","minimum":0,"maximum":1},"observed_age_seconds":{"type":"integer","minimum":0},"status":{"enum":["PASS","DEGRADED","FAIL"]},"issue_codes":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true}}}},
+    "declared_overall_state":{"enum":["PASS","DEGRADED","FAIL"]}
+  }
+}

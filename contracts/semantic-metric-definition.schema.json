@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/semantic-metric-definition/v1",
+  "title": "SemanticMetricDefinition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","metric_id","version","name","description","owner_role","source_system_id","unit","timezone","grain","aggregation","scope","effective_time","lineage_subjects","status"],
+  "properties": {
+    "schema": {"const":"fde-agent/semantic-metric-definition/v1"},
+    "metric_id": {"type":"string","pattern":"^[a-z][a-z0-9-]{2,63}$"},
+    "version": {"type":"string","pattern":"^\\d+\\.\\d+\\.\\d+$"},
+    "name": {"type":"string","minLength":1},
+    "description": {"type":"string","minLength":1},
+    "owner_role": {"type":"string","minLength":1},
+    "source_system_id": {"type":"string","minLength":1},
+    "unit": {"type":"string","minLength":1},
+    "currency": {"type":["string","null"]},
+    "timezone": {"type":"string","minLength":1},
+    "grain": {"enum":["EVENT","CASE","DAY","WEEK","MONTH"]},
+    "aggregation": {"enum":["COUNT","SUM","AVG","RATE","PERCENTILE","CUSTOM"]},
+    "scope": {"type":"object","additionalProperties":false,"required":["tenant_ref","process_id","population_filter"],"properties":{"tenant_ref":{"type":"string","minLength":1},"process_id":{"type":"string","minLength":1},"population_filter":{"type":"string","minLength":1}}},
+    "effective_time": {"type":"object","additionalProperties":false,"required":["valid_from","valid_to"],"properties":{"valid_from":{"type":"string","format":"date-time"},"valid_to":{"type":["string","null"],"format":"date-time"}}},
+    "lineage_subjects": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["subject_type","subject_id","digest"],"properties":{"subject_type":{"type":"string","minLength":1},"subject_id":{"type":"string","minLength":1},"digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}}}},
+    "status": {"enum":["DRAFT","VALIDATED","ACTIVE","SUPERSEDED"]}
+  }
+}

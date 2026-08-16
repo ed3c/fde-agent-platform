@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/data-readiness-decision/v1",
+  "title":"DataReadinessDecision",
+  "type":"object","additionalProperties":false,
+  "required":["schema","readiness_id","tenant_ref","task_id","metric_ref","profile_ref","access_disposition","semantic_state","freshness_state","state","blocking_reasons","degraded_reasons","evaluated_at","evaluator_version","input_digest","invalidates_evidence_subjects"],
+  "properties":{
+    "schema":{"const":"fde-agent/data-readiness-decision/v1"},
+    "readiness_id":{"type":"string","minLength":1},"tenant_ref":{"type":"string","minLength":1},"task_id":{"type":"string","minLength":1},
+    "metric_ref":{"type":"object","additionalProperties":false,"required":["metric_id","version","digest"],"properties":{"metric_id":{"type":"string","minLength":1},"version":{"type":"string","minLength":1},"digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}}},
+    "profile_ref":{"type":"object","additionalProperties":false,"required":["profile_id","digest"],"properties":{"profile_id":{"type":"string","minLength":1},"digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}}},
+    "access_disposition":{"enum":["AUTHORIZED","UNAUTHORIZED","UNKNOWN"]},"semantic_state":{"enum":["CONSISTENT","CONFLICTED","UNKNOWN"]},"freshness_state":{"enum":["FRESH","STALE","UNKNOWN"]},"state":{"enum":["READY","DEGRADED","BLOCKED"]},
+    "blocking_reasons":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},"degraded_reasons":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true},
+    "evaluated_at":{"type":"string","format":"date-time"},"evaluator_version":{"type":"string","minLength":1},"input_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"invalidates_evidence_subjects":{"type":"array","items":{"type":"string","minLength":1},"uniqueItems":true}
+  }
+}
