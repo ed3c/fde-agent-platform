@@ -51,3 +51,14 @@ The Shadow Architect is read-only. It records material architecture deltas and d
 - Observation: all four planted mutations fail closed; the full local snapshot reports 21/21 tests passing and all governance/contract checks passing.
 - Not proved: live retrieval at execution time, local Git Town, Forgejo, GitHub Actions, merge, release, or production behavior.
 - Intervention: `FIRST_GREEN → CONTINUE_WITH_WARNINGS_L1`. Product Stack 04 may proceed after PR review without promoting any absent live lane.
+
+## 2026-08-17 — DIRECTORY_DAG_AND_STACK_INDEX (Stack 04)
+
+- Delta: `OWNERSHIP_DELTA`, `LIFECYCLE_DELTA`, `PROCEDURAL_GROUNDING_DELTA`, `EVIDENCE_DELTA`.
+- Newly possible: an Agent can route from an Issue to the exact directory owner, local state machine, consumed/emitted subjects, dependency DAG, and molecular Stack-PR atom before writing code.
+- Must remain true: the README hierarchy is a consumer navigation/index layer; `system-contract.json`, open Issues, exact Git/PR state, and runtime receipts remain the underlying authorities.
+- Material finding: the former Data Readiness dependency shape could create `#45 → #29/#32 → #8 → #45`. The architecture separates upstream semantic/readiness contracts from downstream persistence/observability adapters to restore a DAG.
+- Falsifier: a planned path is described as implemented; two sibling atoms receive overlapping writer leases; an Issue is absent from the index; or a diagram contradicts its owning Issue/contract.
+- Evidence available: GitHub readback of repository files, Issues, PRs, branches, and parent ancestry. Local Markdown/test/no-vendoring execution is not exercised by this connector runtime.
+- Not proved: Git Town restack, Worktree leases, local Forgejo, exact-head Actions, integrated product behavior, provider runtime, production safety, or business outcomes.
+- Intervention: `RECONCILE_BEFORE_NEXT_STEP_L2` until the documentation branch is reviewed and #8/#45 dependency metadata is updated; after closure, `CONTINUE_WITH_WARNINGS_L1`.
