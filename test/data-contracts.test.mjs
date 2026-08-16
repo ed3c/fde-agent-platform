@@ -1,0 +1,7 @@
+import test from 'node:test'; import assert from 'node:assert/strict'; import { readFile } from 'node:fs/promises';
+import { validateSemanticMetricDefinition, validateDataQualityProfile, detectSemanticDrift, assertSemanticEvidenceFresh } from '../src/data/contract-validation.mjs';
+const json=async p=>JSON.parse(await readFile(new URL(p,import.meta.url),'utf8'));
+test('valid semantic metric and field profile are accepted',async()=>{assert.equal(validateSemanticMetricDefinition(await json('../fixtures/data/metric.case-cycle-time.json')),true);assert.equal(validateDataQualityProfile(await json('../fixtures/data/profile.ap-events.ready.json')),true);});
+test('metric without unit is rejected',async()=>{const m=await json('../fixtures/data/metric.case-cycle-time.json');delete m.unit;assert.throws(()=>validateSemanticMetricDefinition(m),e=>e.code==='MISSING_FIELD');});
+test('profile cannot duplicate a field identity',async()=>{const p=await json('../fixtures/data/profile.ap-events.ready.json');p.fields.push(structuredClone(p.fields[0]));assert.throws(()=>validateDataQualityProfile(p),e=>e.code==='DUPLICATE_IDENTITY');});
+test('schema-compatible semantic drift invalidates dependent evidence',async()=>{const a=await json('../fixtures/data/metric.case-cycle-time.json');const b=structuredClone(a);b.version='1.1.0';b.unit='minutes';assert.equal(detectSemanticDrift(a,b),true);assert.throws(()=>assertSemanticEvidenceFresh(a,b,['baseline:v1']),e=>e.code==='SEMANTIC_DRIFT_INVALIDATES_EVIDENCE');});
