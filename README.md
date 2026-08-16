@@ -49,3 +49,26 @@ main
 ```
 
 Each child PR targets its parent branch. Merge, release, permission changes, and production promotion remain Human-owned.
+
+## First executable slice
+
+The first vertical slice compiles a reusable Role Pack with a synthetic Tenant Overlay:
+
+```bash
+npm test
+npm run check
+npm run compile:demo
+```
+
+The compiler is deterministic. It normalizes semantic sets, rejects authority widening and secret-bearing input, preserves prohibited actions, binds both normalized inputs by SHA-256, and emits `production_admission: HUMAN_ADMIT_REQUIRED`.
+
+```text
+Role Pack
++ Tenant Overlay
+→ cross-contract validation
+→ deterministic normalization
+→ authority intersection
+→ DigitalEmployeeSpec
+```
+
+This slice does **not** call a model, MCP server, ERP/CRM system, Git Town executable, local Forgejo, or production runtime. Those remain separately admitted future lanes.
