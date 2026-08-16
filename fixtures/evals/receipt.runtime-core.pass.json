@@ -1,0 +1,20 @@
+{
+  "schema": "fde-agent/eval-receipt/v1",
+  "receipt_id": "receipt-runtime-core-001",
+  "eval_pack_ref": { "eval_pack_id": "runtime-core", "version": "1.0.0" },
+  "subject": { "subject_class": "SYNTHETIC_ANALOG", "subject_id": "runtime-simulator-fixture", "digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" },
+  "evaluator": { "evaluator_id": "runtime-evaluator", "version": "1.0.0" },
+  "environment": "local-node22-synthetic",
+  "command": "node --test test/eval-contracts.test.mjs",
+  "started_at": "2026-08-16T02:00:00Z",
+  "finished_at": "2026-08-16T02:00:01Z",
+  "case_results": [
+    { "case_id": "duplicate-side-effect", "state": "PASS", "evidence_digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "message": "duplicate suppressed" },
+    { "case_id": "mutation-disable-idempotency", "state": "PASS", "evidence_digest": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff", "message": "planted defect killed" },
+    { "case_id": "explanation-quality", "state": "PASS", "evidence_digest": null, "message": "supplementary review completed" }
+  ],
+  "mutation_kills": 1,
+  "coverage": { "declared_cases": 3, "executed_cases": 3, "blocking_cases": 2 },
+  "overall_state": "PASS",
+  "artifact_digest": "1111111111111111111111111111111111111111111111111111111111111111"
+}
