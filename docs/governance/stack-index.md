@@ -25,9 +25,9 @@ This file records repository-specific issues, branches, parents, path families, 
 | 01 | #3 | `agent/01-contracts` | `agent/00-bootstrap-control-plane@0e3024a7ed0505b2fdb02f42fa5008d98be5ea6c` | #6 | branch/tree + reported local L2 tests |
 | 02 | #4 | `agent/02-role-overlay-compiler` | `agent/01-contracts@20a5d29a0428b866b040ae8bad3ee9838c09ffcf` | #7 | branch/tree + reported local L2 tests |
 | 03 | #14 | `agent/03-shared-procedure-bindings` | `agent/02-role-overlay-compiler@f3c926620e3203d9d6dce0b2e81a9ff8c7e7fd22` | #24 | exact external binding + no-vendoring controls |
-| 04 | #47 | `agent/04-agent-operating-map` | `agent/03-shared-procedure-bindings@35be041e250236510211a1afaf900306a5d6ef60` | PENDING | documentation/readback; local gates not yet exercised |
+| 04 | #47 | `agent/04-agent-operating-map` | `agent/03-shared-procedure-bindings@35be041e250236510211a1afaf900306a5d6ef60` | #48 | documentation/readback; local gates not yet exercised |
 
-The current connector runtime created the GitHub branch/Issue state. Live Git Town sync/restack, linked Worktrees, Forgejo, Actions, merge, and production remain separate.
+The current connector runtime created the GitHub branch/Issue/PR state. Live Git Town sync/restack, linked Worktrees, Forgejo, Actions, merge, and production remain separate.
 
 ## Molecular PR atom contract
 
@@ -97,7 +97,7 @@ Families are logical planning groups, not long-lived release branches.
 | #3 | FDN | `contracts` | `C→E→D` | PR #6 / `agent/01-contracts` |
 | #4 | FDN | `src/compiler` | `K→E→D` | PR #7 / `agent/02-role-overlay-compiler` |
 | #14 | FDN | `docs/governance` | `C→E→D` | PR #24 / `agent/03-shared-procedure-bindings` |
-| #47 | FDN | `README/AGENTS/docs` | `D→E` | `agent/04-agent-operating-map`; Draft PR pending |
+| #47 | FDN | `README/AGENTS/docs` | `D→E` | `agent/04-agent-operating-map`; Draft PR #48 |
 | #13 | LIVE | `delivery runtime` | `C→A→E→X→D` | #14; local/private-capable runtime |
 | #25 | ENG | `src/discovery` | `C→K→E→D` | #14 + #47 |
 | #26 | DAT | `src/engagement` | `C→K→E→D` | #14 + #47 |
