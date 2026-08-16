@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/bounded-value-pilot.schema.json",
+  "title": "Bounded Value Pilot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "pilot_id", "opportunity_id", "outcome_charter_id", "mode", "action_ceiling", "technical_safety_poc_required", "max_duration_days", "max_cases", "entry_criteria", "exit_criteria", "kill_criterion_ids", "allowed_actions", "state", "source_subjects"],
+  "properties": {
+    "schema": { "const": "fde-agent/bounded-value-pilot/v1" },
+    "pilot_id": { "type": "string" },
+    "opportunity_id": { "type": "string" },
+    "outcome_charter_id": { "type": "string" },
+    "mode": { "const": "BOUNDED_VALUE_PILOT" },
+    "action_ceiling": { "enum": ["OBSERVE", "RECOMMEND", "DRAFT", "REVERSIBLE_ACTION"] },
+    "technical_safety_poc_required": { "type": "boolean" },
+    "max_duration_days": { "type": "number", "minimum": 1, "maximum": 90 },
+    "max_cases": { "type": "number", "minimum": 1 },
+    "entry_criteria": { "type": "array", "minItems": 1 },
+    "exit_criteria": { "type": "array", "minItems": 1 },
+    "kill_criterion_ids": { "type": "array", "minItems": 1, "uniqueItems": true },
+    "allowed_actions": { "type": "array", "uniqueItems": true },
+    "state": { "enum": ["DRAFT", "READY_FOR_REVIEW", "REJECTED"] },
+    "source_subjects": { "type": "array", "minItems": 1, "uniqueItems": true }
+  }
+}

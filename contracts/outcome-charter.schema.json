@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/outcome-charter.schema.json",
+  "title": "FDE Outcome Charter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "outcome_charter_id", "opportunity_id", "baseline", "counterfactual", "metrics", "kill_criteria", "pricing_eligibility", "approved_by", "source_subjects"],
+  "properties": {
+    "schema": { "const": "fde-agent/outcome-charter/v1" },
+    "outcome_charter_id": { "type": "string" },
+    "opportunity_id": { "type": "string" },
+    "baseline": { "type": "object" },
+    "counterfactual": { "type": "object" },
+    "metrics": { "type": "array", "minItems": 1 },
+    "kill_criteria": { "type": "array", "minItems": 1 },
+    "pricing_eligibility": { "enum": ["FIXED_FEE_ONLY", "OUTCOME_LINKED_CANDIDATE"] },
+    "approved_by": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+    "source_subjects": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } }
+  }
+}

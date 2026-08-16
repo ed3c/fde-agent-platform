@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/opportunity-candidate.schema.json",
+  "title": "FDE Opportunity Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "opportunity_id", "title", "owners", "dimensions", "three_high_signals", "decision", "assumptions", "source_subjects"],
+  "properties": {
+    "schema": { "const": "fde-agent/opportunity-candidate/v1" },
+    "opportunity_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "title": { "type": "string", "minLength": 1 },
+    "owners": {
+      "type": "object", "additionalProperties": false,
+      "required": ["executive_sponsor", "outcome_owner", "data_owner", "risk_owner", "it_owner"],
+      "properties": {
+        "executive_sponsor": { "type": "string", "minLength": 1 },
+        "outcome_owner": { "type": "string", "minLength": 1 },
+        "data_owner": { "type": "string", "minLength": 1 },
+        "risk_owner": { "type": "string", "minLength": 1 },
+        "it_owner": { "type": "string", "minLength": 1 }
+      }
+    },
+    "dimensions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "frequency", "observability", "controllability", "reversibility", "attribution", "reuse_potential", "integration_cost", "risk", "organizational_resistance"],
+      "properties": {
+        "value": { "$ref": "#/$defs/score" }, "frequency": { "$ref": "#/$defs/score" }, "observability": { "$ref": "#/$defs/score" },
+        "controllability": { "$ref": "#/$defs/score" }, "reversibility": { "$ref": "#/$defs/score" }, "attribution": { "$ref": "#/$defs/score" },
+        "reuse_potential": { "$ref": "#/$defs/score" }, "integration_cost": { "$ref": "#/$defs/score" }, "risk": { "$ref": "#/$defs/score" },
+        "organizational_resistance": { "$ref": "#/$defs/score" }
+      }
+    },
+    "three_high_signals": {
+      "type": "object", "additionalProperties": false,
+      "required": ["high_people_cost", "high_money_cost", "high_time_cost"],
+      "properties": { "high_people_cost": { "type": "boolean" }, "high_money_cost": { "type": "boolean" }, "high_time_cost": { "type": "boolean" } }
+    },
+    "decision": { "enum": ["CANDIDATE", "REJECTED", "HUMAN_REVIEW_REQUIRED"] },
+    "assumptions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "source_subjects": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  },
+  "$defs": { "score": { "type": "number", "minimum": 1, "maximum": 5 } }
+}
