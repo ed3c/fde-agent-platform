@@ -10,7 +10,7 @@ A public, domain-neutral **Outcome Delivery OS** that converts reusable Role Pac
 | Public contracts and synthetic fixtures | Implemented in draft Stack PR #6 | L2 deterministic checks |
 | Role Pack + Tenant Overlay compiler | Implemented in draft Stack PR #7 | L2 deterministic checks |
 | Exact external `skills-shared` binding and no-vendoring controls | Implemented in draft Stack PR #24 | L2 deterministic checks |
-| Agent operating map and complete Stack-PR index | Implementing in issue #47 on `agent/04-agent-operating-map` | Static GitHub/readback evidence |
+| Agent operating map and complete Stack-PR index | Implementing in Draft PR #48 on `agent/04-agent-operating-map` | Static GitHub/readback evidence |
 | Git Town executable, linked worktrees, local Forgejo, exact-head Actions | `ABSENT` / `NOT_EXERCISED` | Owned by #13 |
 | Real connectors, durable provider, enterprise identity, production traffic, ROI | `NOT_IMPLEMENTED` / `NOT_EXERCISED` | Separate issues and Human admission |
 
@@ -215,7 +215,7 @@ main
    └─ agent/01-contracts                   #3  / PR #6
       └─ agent/02-role-overlay-compiler    #4  / PR #7
          └─ agent/03-shared-procedure-bindings #14 / PR #24
-            └─ agent/04-agent-operating-map    #47 / DRAFT PR PENDING
+            └─ agent/04-agent-operating-map    #47 / DRAFT PR #48
 ```
 
 After this documentation gate, implementation is a **DAG**, not one artificial 40-branch chain:
