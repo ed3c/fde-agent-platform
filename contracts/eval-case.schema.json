@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/eval-case.schema.json",
+  "title": "FDE Eval Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "case_id", "description", "fixture_digest", "oracle_type", "blocking", "hard_assertion", "expected_state", "mutation_id", "source_class"],
+  "properties": {
+    "schema": { "const": "fde-agent/eval-case/v1" },
+    "case_id": { "type": "string" },
+    "description": { "type": "string" },
+    "fixture_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "oracle_type": { "enum": ["DETERMINISTIC", "SYSTEM_STATE", "HUMAN_LABEL", "LLM_JUDGE_SUPPLEMENTARY"] },
+    "blocking": { "type": "boolean" },
+    "hard_assertion": { "type": "boolean" },
+    "expected_state": { "enum": ["PASS", "FAIL", "NOT_EXERCISED", "SKIPPED_BY_POLICY"] },
+    "mutation_id": { "type": ["string", "null"] },
+    "source_class": { "enum": ["REPOSITORY_RUNTIME", "SOURCE_REPORTED_EXTERNAL", "SYNTHETIC_ANALOG"] }
+  }
+}
