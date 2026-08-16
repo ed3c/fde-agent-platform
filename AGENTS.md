@@ -186,7 +186,7 @@ main
    └─ agent/01-contracts                     #3  / PR #6
       └─ agent/02-role-overlay-compiler      #4  / PR #7
          └─ agent/03-shared-procedure-bindings #14 / PR #24
-            └─ agent/04-agent-operating-map    #47 / DRAFT PR PENDING
+            └─ agent/04-agent-operating-map    #47 / DRAFT PR #48
 ```
 
 The current connector runtime can publish GitHub branches/issues/draft PRs. It does not prove Git Town execution, a local Worktree, Forgejo, Actions, merge, or production.
