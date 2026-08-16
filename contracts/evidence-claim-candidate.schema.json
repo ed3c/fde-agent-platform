@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/evidence-claim-candidate.schema.json",
+  "title": "Evidence Claim Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "claim_id", "tenant_ref", "source_ref", "subject", "predicate", "object", "valid_time", "observed_at", "confidence", "status", "parser_subject", "redaction_digest"],
+  "properties": {
+    "schema": { "const": "fde-agent/evidence-claim-candidate/v1" },
+    "claim_id": { "type": "string" },
+    "tenant_ref": { "type": "string" },
+    "source_ref": { "type": "object" },
+    "subject": { "type": "string" },
+    "predicate": { "type": "string" },
+    "object": { "type": "string" },
+    "valid_time": { "type": "object" },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "status": { "const": "CLAIM_CANDIDATE" },
+    "parser_subject": { "type": "string" },
+    "redaction_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

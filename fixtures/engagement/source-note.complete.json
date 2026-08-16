@@ -1,0 +1,16 @@
+{
+  "schema": "fde-agent/source-manifest/v1",
+  "source_id": "meeting-ap-001",
+  "tenant_ref": "tenant-demo",
+  "source_type": "MEETING_NOTE",
+  "content_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "byte_size": 2048,
+  "observed_at": "2026-08-16T01:00:00Z",
+  "parser": { "parser_id": "plain-text-parser", "version": "1.0.0" },
+  "completeness": { "state": "COMPLETE", "expected_units": 1, "parsed_units": 1, "warnings": [] },
+  "parsed_character_count": 1000,
+  "data_classification": "CONFIDENTIAL",
+  "redaction_required": true,
+  "source_locator": "private://meeting-ap-001",
+  "access_grant_subject": "authorization:synthetic-fixture"
+}
