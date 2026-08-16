@@ -1,0 +1,12 @@
+{
+  "schema": "fde-agent/eval-pack/v1",
+  "eval_pack_id": "runtime-core",
+  "version": "1.0.0",
+  "layer": "RUNTIME",
+  "state": "ACTIVE",
+  "subject_contracts": ["fde-agent/runtime-receipt/v1"],
+  "case_ids": ["duplicate-side-effect", "mutation-disable-idempotency", "explanation-quality"],
+  "release_thresholds": { "minimum_pass_rate": 1, "maximum_blocking_failures": 0, "minimum_mutation_kills": 1 },
+  "model_judge_policy": { "allowed": true, "may_override_hard_failure": false },
+  "source_subjects": ["issue:ed3c/fde-agent-platform#31"]
+}
