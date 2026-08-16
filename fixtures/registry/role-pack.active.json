@@ -1,0 +1,16 @@
+{
+  "schema": "fde-agent/registry-entry/v1",
+  "registry_entry_id": "registry-role-support-v1",
+  "artifact_type": "ROLE_PACK",
+  "logical_id": "customer-support",
+  "version": "1.0.0",
+  "contract_id": "fde-agent/role-pack/v1",
+  "content_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "authority_ceiling_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "state": "ACTIVE",
+  "created_at": "2026-08-16T00:00:00Z",
+  "supersedes": null,
+  "private_reference": null,
+  "source_subjects": ["git:ed3c/fde-agent-platform@42500190aefc5c873b441e19b5beef7b4bbf9264"],
+  "validation_receipt_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+}
