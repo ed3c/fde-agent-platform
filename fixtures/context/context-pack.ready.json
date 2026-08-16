@@ -1,0 +1,66 @@
+{
+  "schema": "fde-agent/context-pack/v1",
+  "context_pack_id": "context-ap-route-review",
+  "tenant_ref": "tenant-demo",
+  "task_subject": "ap-exception-routing",
+  "process_twin_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "query_digest": "45d198b545fc7ba079524931b6c5efbd444a9aa2adc4249ac63c055e57d655b0",
+  "state": "READY",
+  "selected_nodes": [
+    {
+      "node_id": "detect-mismatch",
+      "view": "SYSTEM_ENFORCED",
+      "owner_role": "ap-operator",
+      "source_claim_ids": ["claim-detect"],
+      "estimated_tokens": 32,
+      "reason": "DEPENDENCY"
+    },
+    {
+      "node_id": "route-exception",
+      "view": "SYSTEM_ENFORCED",
+      "owner_role": "ap-process-owner",
+      "source_claim_ids": ["claim-route-a"],
+      "estimated_tokens": 36,
+      "reason": "REQUIRED"
+    }
+  ],
+  "selected_claims": [
+    {
+      "claim_id": "claim-detect",
+      "claim_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "source_id": "erp-schema",
+      "recorded_at": "2026-08-15T00:00:00Z",
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": null,
+      "data_classification": "INTERNAL",
+      "readiness_state": "READY"
+    },
+    {
+      "claim_id": "claim-route-a",
+      "claim_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "source_id": "routing-policy",
+      "recorded_at": "2026-08-15T00:00:00Z",
+      "valid_from": "2026-01-01T00:00:00Z",
+      "valid_to": null,
+      "data_classification": "CONFIDENTIAL",
+      "readiness_state": "READY"
+    }
+  ],
+  "unresolved_contradictions": [],
+  "omitted_optional_nodes": ["poisoned-summary"],
+  "mandatory_policy_subjects": ["policy:ap-route/v1"],
+  "budget": {
+    "max_nodes": 4,
+    "used_nodes": 2,
+    "max_tokens": 200,
+    "used_tokens": 68
+  },
+  "authority_envelope": {
+    "purpose": "CONTEXT_ONLY",
+    "tenant_ref": "tenant-demo",
+    "maximum_data_classification": "CONFIDENTIAL"
+  },
+  "refusal_reasons": [],
+  "context_digest": "d42989ca4439623f2357b3423e2d38b4006fd591e081251ae9ac9db2f2cfa309",
+  "execution_authority": "NONE"
+}
