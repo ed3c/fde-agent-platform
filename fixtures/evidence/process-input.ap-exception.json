@@ -1,0 +1,13 @@
+{
+  "tenant_ref":"tenant-demo","process_id":"ap-invoice-po-exception","version":"1.0.0","generated_at":"2026-08-16T17:00:00Z",
+  "nodes":[
+    {"node_id":"validate-mismatch","kind":"DECISION","owner_role":"ap-system","view":"SYSTEM_ENFORCED","source_claim_ids":["claim-system-po-required"],"preconditions":["invoice_present"],"postconditions":["mismatch_classified"],"state":"ACTIVE"},
+    {"node_id":"route-mismatch","kind":"TASK","owner_role":"reconciliation-specialist","view":"OBSERVED","source_claim_ids":["claim-observed-route"],"preconditions":["mismatch_classified"],"postconditions":["owner_recommended"],"state":"ACTIVE"},
+    {"node_id":"create-draft-case","kind":"TASK","owner_role":"ap-process-owner","view":"APPROVED_TARGET","source_claim_ids":["claim-target-draft"],"preconditions":["owner_recommended"],"postconditions":["draft_case_created"],"state":"PROPOSED"}
+  ],
+  "edges":[
+    {"edge_id":"edge-validate-route","from":"validate-mismatch","to":"route-mismatch","relation":"PRECEDES","condition":null,"controlled_cycle_id":null},
+    {"edge_id":"edge-route-draft","from":"route-mismatch","to":"create-draft-case","relation":"PRECEDES","condition":null,"controlled_cycle_id":null}
+  ],
+  "controlled_cycles":[]
+}
