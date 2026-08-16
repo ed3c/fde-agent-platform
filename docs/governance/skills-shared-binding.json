@@ -67,7 +67,10 @@
   },
   "evidence": {
     "binding_manifest": "IMPLEMENTED",
-    "local_skill_vendoring_negative_control": "PENDING_THIS_ISSUE",
+    "local_skill_vendoring_negative_control": "PASS_L2_DETERMINISTIC",
+    "copied_frontmatter_negative_control": "PASS_L2_DETERMINISTIC",
+    "mutable_subject_negative_control": "PASS_L2_DETERMINISTIC",
+    "issue_template_binding_control": "PASS_L2_DETERMINISTIC",
     "live_git_town": "NOT_EXERCISED",
     "local_forgejo": "ABSENT",
     "github_actions": "NOT_EXERCISED",
