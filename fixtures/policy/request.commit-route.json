@@ -1,0 +1,39 @@
+{
+  "schema": "fde-agent/policy-request/v1",
+  "request_id": "ap-commit-route",
+  "tenant_ref": "tenant-demo",
+  "digital_employee_spec_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "context_pack_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "policy_subjects": ["policy:ap/v1"],
+  "action_id": "commit-route-change",
+  "operation_id": "commit-route-change",
+  "requested_action_class": "APPROVED_COMMIT",
+  "caller_identity_ref": "user:ap-operator",
+  "caller_roles": ["ap-operator"],
+  "authenticated": true,
+  "requested_at": "2026-08-16T00:00:00Z",
+  "data_classification": "CONFIDENTIAL",
+  "region": "ap-east",
+  "operation_identity": "op-ap-001",
+  "idempotency_key_present": true,
+  "approval": {
+    "status": "CONFIRMED",
+    "approver_identity_ref": "user:ap-owner",
+    "approver_role": "ap-process-owner",
+    "subject_digest": "254517d846b9b5cfaaa7a075ca99400a35fd3a0affe2a3137967a0d561cc64b8",
+    "expires_at": "2026-08-16T01:00:00Z"
+  },
+  "authority_envelope": {
+    "allowed_action_ids": ["commit-route-change"],
+    "prohibited_action_ids": ["post-payment"],
+    "maximum_action_class": "APPROVED_COMMIT",
+    "system_capabilities": [
+      {
+        "system_id": "erp",
+        "operation_ids": ["commit-route-change"]
+      }
+    ],
+    "required_separation_of_duties": true,
+    "model_decision_permitted": false
+  }
+}
