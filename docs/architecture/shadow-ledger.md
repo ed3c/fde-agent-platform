@@ -41,3 +41,13 @@ The Shadow Architect is read-only. It records material architecture deltas and d
 - Not proved: a live Git Town executable, linked worktree lease, local Forgejo issue/PR, GitHub Actions runner, remote ancestry, or merge readiness.
 - Remaining assumption: GitHub tree publication will contain byte-equivalent files to the tested workspace; bind this through a tree identity comparison before creating the draft PR.
 - Intervention: `CONTINUE_WITH_WARNINGS_L1`.
+
+## 2026-08-16 — PROCEDURAL_GROUNDING (Stack 03)
+
+- Delta: `PROCEDURAL_GROUNDING_DELTA`, `OWNERSHIP_DELTA`, `EVIDENCE_DELTA`.
+- Newly possible: every unfinished issue can be directed by exact shared procedures without copying those procedures into the consumer repository.
+- Must remain true: `skills-shared` exclusively owns Skill bodies; this repository owns only exact bindings, task packets, product adapters, tests, and receipts.
+- Falsifiers exercised: local `skills/**/SKILL.md`, copied canonical Skill frontmatter under another filename, mutable shared subject, and an issue template missing procedure-delta fields.
+- Observation: all four planted mutations fail closed; the full local snapshot reports 21/21 tests passing and all governance/contract checks passing.
+- Not proved: live retrieval at execution time, local Git Town, Forgejo, GitHub Actions, merge, release, or production behavior.
+- Intervention: `FIRST_GREEN → CONTINUE_WITH_WARNINGS_L1`. Product Stack 04 may proceed after PR review without promoting any absent live lane.
