@@ -1,0 +1,116 @@
+{
+  "schema": "fde-agent/source-evidence-ledger/v1",
+  "ledger_id": "fde-external-case-claims",
+  "version": "1.0.0",
+  "repository_runtime_relation": "NONE",
+  "entries": [
+    {
+      "claim_id": "lingyang-customer-support-260-steps",
+      "source_family": "LINGYANG_E248",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "E248@06:51-08:10",
+      "claim_summary": "A 3C fulfillment-support flow is described as containing more than 260 cross-system steps and covering over 95% of routine cases.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["step taxonomy", "workflow artifact", "coverage denominator", "error and override rates", "human comparison protocol"],
+      "synthetic_analog_issue": 21,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "lingyang-expert-pitcher-10000-actions",
+      "source_family": "LINGYANG_E248",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "E248@12:57-16:04",
+      "claim_summary": "A top advertising operator is described as making over 10,000 price adjustments in roughly 90 days.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["event-log schema", "deduplication rule", "operator cohort", "outcome linkage", "platform policy compliance"],
+      "synthetic_analog_issue": 16,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "lingyang-regional-sales-uplift",
+      "source_family": "LINGYANG_E248",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "E248@31:33-33:06",
+      "claim_summary": "A manufacturing sales-agent pilot province is described as moving from a lagging position to a national-leading position.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["baseline period", "comparison cohort", "gross-margin outcome", "adoption data", "confounder analysis"],
+      "synthetic_analog_issue": 25,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "lingyang-unit-economics-3m-12m-break-even",
+      "source_family": "LINGYANG_E248",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "E248@47:27",
+      "claim_summary": "An early project is described as producing 3M revenue against 12M initial input and reaching break-even by quarter end.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["accounting scope", "revenue recognition", "capitalized versus operating cost", "shared-platform allocation", "quarterly ledger"],
+      "synthetic_analog_issue": 36,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "lingyang-model-routing-retention",
+      "source_family": "LINGYANG_E248",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "E248@48:54-52:35",
+      "claim_summary": "The platform is described as routing among several models, separating system deployment from model endpoints, and pinning model upgrades until regression review.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["router policy", "provider-product-region terms", "retention audit", "regression pack", "shadow divergence and rollback records"],
+      "synthetic_analog_issue": 12,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "varick-three-agent-pillars",
+      "source_family": "VARICK_PRESENTATION",
+      "source_type": "PRESENTATION_STATEMENT",
+      "source_anchor": "Varick@12:00-15:20",
+      "claim_summary": "The design describes Engagement, Workflow, and Development Agent pillars for scaling FDE delivery.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["system specification", "release boundary", "production change logs", "failure and rollback criteria"],
+      "synthetic_analog_issue": 42,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "varick-postgres-graph-posttraining",
+      "source_family": "VARICK_PRESENTATION",
+      "source_type": "PRESENTATION_STATEMENT",
+      "source_anchor": "Varick@15:20-18:35",
+      "claim_summary": "The design describes a PostgreSQL dependency graph and SFT/RL for graph traversal and workflow synthesis.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["schema", "training dataset", "reward definition", "holdout benchmark", "frontier-model comparison protocol"],
+      "synthetic_analog_issue": 35,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "varick-roi-ranges",
+      "source_family": "VARICK_PRESENTATION",
+      "source_type": "PRESENTATION_STATEMENT",
+      "source_anchor": "Varick@11:10-11:45",
+      "claim_summary": "Point solutions are described as producing 5-10% ROI and department-wide transformation as producing 25-75% ROI.",
+      "state": "SOURCE_REPORTED",
+      "artifact_digest": null,
+      "evidence_needed": ["sample frame", "ROI formula", "cost scope", "measurement period", "controls and confidence intervals"],
+      "synthetic_analog_issue": 11,
+      "runtime_relation": "SYNTHETIC_ANALOG_ONLY"
+    },
+    {
+      "claim_id": "mit-95-percent-pilot-claim",
+      "source_family": "MIT_NANDA_REPORT",
+      "source_type": "SECONDARY_RESEARCH_CLAIM",
+      "source_anchor": "cited-in-source-material",
+      "claim_summary": "The source material cites a preliminary report as evidence that most task-specific generative-AI pilots did not reach production.",
+      "state": "PRIMARY_SOURCE_CONFIRMED",
+      "artifact_digest": null,
+      "evidence_needed": ["exact report version", "sample and definitions", "selection limitations", "production-rate denominator", "current replication"],
+      "synthetic_analog_issue": 23,
+      "runtime_relation": "NONE"
+    }
+  ]
+}

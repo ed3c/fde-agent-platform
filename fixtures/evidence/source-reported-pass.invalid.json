@@ -1,0 +1,20 @@
+{
+  "schema": "fde-agent/source-evidence-ledger/v1",
+  "ledger_id": "invalid",
+  "version": "1.0.0",
+  "repository_runtime_relation": "NONE",
+  "entries": [
+    {
+      "claim_id": "invalid-pass",
+      "source_family": "EXTERNAL",
+      "source_type": "INTERVIEW_STATEMENT",
+      "source_anchor": "00:00",
+      "claim_summary": "External prose incorrectly promoted to PASS.",
+      "state": "PASS",
+      "artifact_digest": null,
+      "evidence_needed": ["independent artifact"],
+      "synthetic_analog_issue": 23,
+      "runtime_relation": "NONE"
+    }
+  ]
+}
