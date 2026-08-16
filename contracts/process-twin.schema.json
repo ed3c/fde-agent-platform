@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/process-twin/v1",
+  "title": "ProcessTwin",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "process_twin_id", "version", "tenant_ref", "process_id", "generated_at",
+    "input_claim_digests", "nodes", "edges", "controlled_cycles", "unresolved_contradictions",
+    "view_digests", "topological_order", "twin_digest", "execution_authority"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/process-twin/v1" },
+    "process_twin_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "tenant_ref": { "type": "string", "minLength": 1 },
+    "process_id": { "type": "string", "minLength": 1 },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "input_claim_digests": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-f0-9]{64}$" } },
+    "nodes": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["node_id", "kind", "owner_role", "view", "source_claim_ids", "preconditions", "postconditions", "state"],
+        "properties": {
+          "node_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+          "kind": { "enum": ["TASK", "DECISION", "HUMAN_WAIT", "SYSTEM_STATE", "TERMINAL"] },
+          "owner_role": { "type": "string", "minLength": 1 },
+          "view": { "enum": ["DOCUMENTED", "OBSERVED", "SYSTEM_ENFORCED", "APPROVED_TARGET"] },
+          "source_claim_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "preconditions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "postconditions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "state": { "enum": ["ACTIVE", "DEPRECATED", "PROPOSED"] }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["edge_id", "from", "to", "relation", "condition", "controlled_cycle_id"],
+        "properties": {
+          "edge_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+          "from": { "type": "string", "minLength": 1 },
+          "to": { "type": "string", "minLength": 1 },
+          "relation": { "enum": ["PRECEDES", "DEPENDS_ON", "ROUTES_TO", "COMPENSATES", "WAITS_FOR", "OBSERVES"] },
+          "condition": { "type": ["string", "null"] },
+          "controlled_cycle_id": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "controlled_cycles": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["cycle_id", "edge_ids", "max_iterations", "timeout_seconds", "exit_condition"],
+        "properties": {
+          "cycle_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+          "edge_ids": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "max_iterations": { "type": "integer", "minimum": 1 },
+          "timeout_seconds": { "type": "integer", "minimum": 1 },
+          "exit_condition": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "unresolved_contradictions": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["contradiction_id", "claim_ids", "subject_id", "predicate"],
+        "properties": {
+          "contradiction_id": { "type": "string", "minLength": 1 },
+          "claim_ids": { "type": "array", "minItems": 2, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "subject_id": { "type": "string", "minLength": 1 },
+          "predicate": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "view_digests": {
+      "type": "object", "additionalProperties": false,
+      "required": ["DOCUMENTED", "OBSERVED", "SYSTEM_ENFORCED", "APPROVED_TARGET"],
+      "properties": {
+        "DOCUMENTED": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "OBSERVED": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "SYSTEM_ENFORCED": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "APPROVED_TARGET": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "topological_order": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "twin_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "execution_authority": { "const": "NONE" }
+  }
+}

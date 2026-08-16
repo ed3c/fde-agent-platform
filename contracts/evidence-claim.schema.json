@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/evidence-claim/v1",
+  "title": "EvidenceClaim",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "claim_id", "tenant_ref", "subject", "predicate", "object",
+    "source_ref", "temporal", "readiness_ref", "view", "approval",
+    "confidence", "status", "supersedes_claim_id", "contradictions"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/evidence-claim/v1" },
+    "claim_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "tenant_ref": { "type": "string", "minLength": 1 },
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "id"],
+      "properties": { "type": { "type": "string", "minLength": 1 }, "id": { "type": "string", "minLength": 1 } }
+    },
+    "predicate": { "type": "string", "minLength": 1 },
+    "object": {
+      "type": "object", "additionalProperties": false,
+      "required": ["type", "value"],
+      "properties": { "type": { "type": "string", "minLength": 1 }, "value": {} }
+    },
+    "source_ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_id", "source_digest", "claim_candidate_id", "source_span_digest"],
+      "properties": {
+        "source_id": { "type": "string", "minLength": 1 },
+        "source_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "claim_candidate_id": { "type": "string", "minLength": 1 },
+        "source_span_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+      }
+    },
+    "temporal": {
+      "type": "object", "additionalProperties": false,
+      "required": ["valid_from", "valid_to", "observed_at", "recorded_at"],
+      "properties": {
+        "valid_from": { "type": "string", "format": "date-time" },
+        "valid_to": { "type": ["string", "null"], "format": "date-time" },
+        "observed_at": { "type": "string", "format": "date-time" },
+        "recorded_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "readiness_ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["readiness_id", "digest", "state"],
+      "properties": {
+        "readiness_id": { "type": "string", "minLength": 1 },
+        "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "state": { "enum": ["READY", "DEGRADED", "BLOCKED"] }
+      }
+    },
+    "view": { "enum": ["DOCUMENTED", "OBSERVED", "SYSTEM_ENFORCED", "APPROVED_TARGET"] },
+    "approval": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "owner_role", "approved_at"],
+      "properties": {
+        "status": { "enum": ["UNCHECKED", "CONFIRMED", "REJECTED"] },
+        "owner_role": { "type": ["string", "null"] },
+        "approved_at": { "type": ["string", "null"], "format": "date-time" }
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "status": { "enum": ["CANDIDATE", "ADMITTED", "CONTRADICTED", "STALE", "SUPERSEDED", "REJECTED"] },
+    "supersedes_claim_id": { "type": ["string", "null"] },
+    "contradictions": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+  }
+}
