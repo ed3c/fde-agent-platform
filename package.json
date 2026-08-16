@@ -9,6 +9,6 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "check": "node scripts/check-governance.mjs"
+    "check": "node scripts/check-governance.mjs && node scripts/check-contracts.mjs"
   }
 }

@@ -1,0 +1,38 @@
+{
+  "schema": "fde-agent/outcome-contract/v1",
+  "outcome_contract_id": "synthetic-retailer-support-v1",
+  "tenant_id": "synthetic-retailer",
+  "role_pack_id": "customer-support-fulfillment",
+  "baseline_period": {
+    "start": "2026-01-01",
+    "end": "2026-03-31"
+  },
+  "measurement_window": "P30D",
+  "metrics": [
+    {
+      "metric_id": "resolution_cycle_time_minutes",
+      "unit": "minutes",
+      "direction": "DECREASE",
+      "baseline": 180,
+      "target": 90,
+      "source_of_truth": "synthetic-case-ledger"
+    },
+    {
+      "metric_id": "unauthorized_commit_count",
+      "unit": "count",
+      "direction": "HOLD",
+      "baseline": 0,
+      "target": 0,
+      "source_of_truth": "synthetic-audit-ledger"
+    }
+  ],
+  "attribution": {
+    "method": "A_B_TEST",
+    "external_factor_policy": "Exclude cases affected by declared upstream outage windows.",
+    "dispute_owner_role": "business_outcome_owner"
+  },
+  "kill_criteria": [
+    "Any unauthorized irreversible action",
+    "Two consecutive measurement windows with negative risk-adjusted value"
+  ]
+}

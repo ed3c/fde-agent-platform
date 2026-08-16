@@ -1,0 +1,57 @@
+{
+  "schema": "fde-agent/tenant-overlay/v1",
+  "tenant_id": "synthetic-retailer",
+  "role_pack_ref": {
+    "role_pack_id": "customer-support-fulfillment",
+    "version": "1.0.0"
+  },
+  "systems": [
+    {
+      "system_id": "order-management",
+      "connector_id": "synthetic-order-adapter-v1",
+      "granted_capabilities": [
+        "order.read",
+        "case.draft"
+      ]
+    },
+    {
+      "system_id": "warehouse-management",
+      "connector_id": "synthetic-warehouse-adapter-v1",
+      "granted_capabilities": [
+        "inventory.read"
+      ]
+    }
+  ],
+  "enabled_actions": [
+    {
+      "action_id": "order.lookup"
+    },
+    {
+      "action_id": "inventory.lookup"
+    },
+    {
+      "action_id": "exception-case.create-draft"
+    },
+    {
+      "action_id": "fulfillment-route.change",
+      "approval_role": "customer_support_process_owner"
+    },
+    {
+      "action_id": "payment.transfer"
+    }
+  ],
+  "human_manager_role": "customer_support_process_owner",
+  "escalation_roles": [
+    "customer_support_process_owner",
+    "security_incident_owner"
+  ],
+  "model_profile_id": "balanced-private",
+  "privacy": {
+    "data_classification": "CONFIDENTIAL",
+    "zero_data_retention_required": true,
+    "allowed_regions": [
+      "ap-east"
+    ]
+  },
+  "outcome_contract_id": "synthetic-retailer-support-v1"
+}

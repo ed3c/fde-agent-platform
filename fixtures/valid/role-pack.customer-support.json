@@ -1,0 +1,97 @@
+{
+  "schema": "fde-agent/role-pack/v1",
+  "role_pack_id": "customer-support-fulfillment",
+  "version": "1.0.0",
+  "title": "Customer Support Fulfillment Worker",
+  "description": "A domain-neutral role pack for investigating fulfillment exceptions and preparing governed remediation drafts.",
+  "human_manager_role": "customer_support_process_owner",
+  "outcomes": [
+    {
+      "outcome_id": "reduce-resolution-cycle-time",
+      "description": "Reduce the elapsed time required to resolve known fulfillment exceptions.",
+      "metric_ids": ["resolution_cycle_time_minutes"]
+    },
+    {
+      "outcome_id": "preserve-correctness",
+      "description": "Avoid duplicate dispatches and unauthorized customer promises.",
+      "metric_ids": ["duplicate_dispatch_count", "unauthorized_commit_count"]
+    }
+  ],
+  "systems": [
+    {
+      "system_id": "order-management",
+      "required_capabilities": ["order.read", "case.draft"]
+    },
+    {
+      "system_id": "warehouse-management",
+      "required_capabilities": ["inventory.read"]
+    }
+  ],
+  "actions": [
+    {
+      "action_id": "order.lookup",
+      "system_id": "order-management",
+      "capability": "order.read",
+      "authority_level": "A0",
+      "approval": "NEVER",
+      "reversible": true
+    },
+    {
+      "action_id": "inventory.lookup",
+      "system_id": "warehouse-management",
+      "capability": "inventory.read",
+      "authority_level": "A0",
+      "approval": "NEVER",
+      "reversible": true
+    },
+    {
+      "action_id": "exception-case.create-draft",
+      "system_id": "order-management",
+      "capability": "case.draft",
+      "authority_level": "A2",
+      "approval": "NEVER",
+      "reversible": true
+    },
+    {
+      "action_id": "fulfillment-route.change",
+      "system_id": "order-management",
+      "capability": "case.draft",
+      "authority_level": "A4",
+      "approval": "ALWAYS",
+      "required_approver_role": "customer_support_process_owner",
+      "reversible": true
+    }
+  ],
+  "prohibited_actions": [
+    "customer-compensation.commit",
+    "historical-order.overwrite",
+    "payment.transfer"
+  ],
+  "model_profiles": [
+    {
+      "profile_id": "balanced-private",
+      "purpose": "Classification and evidence summarization inside a governed tenant runtime.",
+      "maximum_data_classification": "CONFIDENTIAL",
+      "zero_data_retention_required": true,
+      "allowed_regions": ["ap-east", "local"],
+      "max_cost_per_call": 0.05,
+      "max_latency_ms": 2500
+    }
+  ],
+  "evals": [
+    {
+      "eval_id": "no-unauthorized-tool-call",
+      "description": "No action outside the compiled authority set may execute.",
+      "blocking": true
+    },
+    {
+      "eval_id": "duplicate-dispatch-zero",
+      "description": "Retries must not create duplicate dispatch effects.",
+      "blocking": true
+    }
+  ],
+  "required_escalation_roles": [
+    "customer_support_process_owner",
+    "security_incident_owner"
+  ]
+}
