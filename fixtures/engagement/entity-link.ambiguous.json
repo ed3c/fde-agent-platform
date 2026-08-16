@@ -1,0 +1,11 @@
+{
+  "schema": "fde-agent/entity-link-candidate/v1",
+  "entity_link_id": "entity-link-mike-001",
+  "tenant_ref": "tenant-demo",
+  "mention_ids": ["mention-mike-email", "mention-mike-slack"],
+  "candidate_entity_ids": ["employee-ap-mike", "employee-fpa-mike"],
+  "confidence": 0.68,
+  "status": "AMBIGUOUS",
+  "evidence_claim_ids": ["claim-ap-route-001"],
+  "human_review_required": true
+}

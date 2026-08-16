@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/entity-link-candidate.schema.json",
+  "title": "Entity Link Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "entity_link_id", "tenant_ref", "mention_ids", "candidate_entity_ids", "confidence", "status", "evidence_claim_ids", "human_review_required"],
+  "properties": {
+    "schema": { "const": "fde-agent/entity-link-candidate/v1" },
+    "entity_link_id": { "type": "string" },
+    "tenant_ref": { "type": "string" },
+    "mention_ids": { "type": "array", "minItems": 1, "uniqueItems": true },
+    "candidate_entity_ids": { "type": "array", "minItems": 1, "uniqueItems": true },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "status": { "enum": ["CANDIDATE", "AMBIGUOUS", "CONFIRMED", "REJECTED"] },
+    "evidence_claim_ids": { "type": "array", "minItems": 1, "uniqueItems": true },
+    "human_review_required": { "type": "boolean" }
+  }
+}

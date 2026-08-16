@@ -1,0 +1,19 @@
+{
+  "schema": "fde-agent/evidence-claim-candidate/v1",
+  "claim_id": "claim-ap-route-001",
+  "tenant_ref": "tenant-demo",
+  "source_ref": {
+    "source_id": "meeting-ap-001",
+    "content_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "span": { "start": 120, "end": 240 }
+  },
+  "subject": "invoice-mismatch",
+  "predicate": "routed-to",
+  "object": "ap-exception-owner",
+  "valid_time": { "from": "2026-07-01T00:00:00Z", "to": null },
+  "observed_at": "2026-08-16T01:00:00Z",
+  "confidence": 0.87,
+  "status": "CLAIM_CANDIDATE",
+  "parser_subject": "plain-text-parser@1.0.0",
+  "redaction_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

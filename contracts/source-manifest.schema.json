@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/source-manifest.schema.json",
+  "title": "Engagement Source Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "source_id", "tenant_ref", "source_type", "content_digest", "byte_size", "observed_at", "parser", "completeness", "parsed_character_count", "data_classification", "redaction_required", "source_locator", "access_grant_subject"],
+  "properties": {
+    "schema": { "const": "fde-agent/source-manifest/v1" },
+    "source_id": { "type": "string" },
+    "tenant_ref": { "type": "string" },
+    "source_type": { "enum": ["MEETING_NOTE", "EMAIL_EXPORT", "TICKET_EXPORT", "PDF_TEXT", "PPT_TEXT", "EVENT_LOG", "DIRECTORY", "SYSTEM_EXTRACT"] },
+    "content_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "byte_size": { "type": "integer", "minimum": 0 },
+    "observed_at": { "type": "string", "format": "date-time" },
+    "parser": { "type": "object", "additionalProperties": false, "required": ["parser_id", "version"], "properties": { "parser_id": { "type": "string" }, "version": { "type": "string" } } },
+    "completeness": { "type": "object", "additionalProperties": false, "required": ["state", "expected_units", "parsed_units", "warnings"], "properties": { "state": { "enum": ["COMPLETE", "PARTIAL", "DEGRADED", "UNSUPPORTED"] }, "expected_units": { "type": "integer", "minimum": 0 }, "parsed_units": { "type": "integer", "minimum": 0 }, "warnings": { "type": "array", "uniqueItems": true, "items": { "type": "string" } } } },
+    "parsed_character_count": { "type": "integer", "minimum": 0 },
+    "data_classification": { "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"] },
+    "redaction_required": { "type": "boolean" },
+    "source_locator": { "type": "string" },
+    "access_grant_subject": { "type": "string" }
+  }
+}
