@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/context-query/v1",
+  "title": "ContextQuery",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "query_id", "tenant_ref", "task_subject", "process_twin_digest",
+    "required_node_ids", "optional_node_ids", "requested_views", "mandatory_policy_subjects",
+    "as_of", "max_nodes", "max_tokens", "max_data_classification",
+    "contradiction_policy", "decision_use"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/context-query/v1" },
+    "query_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "tenant_ref": { "type": "string", "minLength": 1 },
+    "task_subject": { "type": "string", "minLength": 1 },
+    "process_twin_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "required_node_ids": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "optional_node_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "requested_views": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["DOCUMENTED", "OBSERVED", "SYSTEM_ENFORCED", "APPROVED_TARGET"] } },
+    "mandatory_policy_subjects": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "as_of": { "type": "string", "format": "date-time" },
+    "max_nodes": { "type": "integer", "minimum": 1 },
+    "max_tokens": { "type": "integer", "minimum": 1 },
+    "max_data_classification": { "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"] },
+    "contradiction_policy": { "enum": ["REFUSE", "INCLUDE_AND_DEGRADE"] },
+    "decision_use": { "enum": ["EXPLORATORY", "RELEASE_BLOCKING"] }
+  }
+}
