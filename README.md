@@ -1,5 +1,51 @@
 # FDE Agent Platform
 
-A public, domain-neutral control plane for compiling reusable **Role Packs** and private **Tenant Overlays** into governed digital-employee specifications.
+A public, domain-neutral **Outcome Delivery OS** for turning reusable Role Packs plus private Tenant Overlays into governed digital employees.
 
-The repository is being bootstrapped through reviewable stacked pull requests. Customer evidence, identities, credentials, private policies, system mappings, and tenant-specific connectors must never be committed here.
+## First vertical slice
+
+```text
+Role Pack
++ Tenant Overlay
++ deterministic policy checks
+        ↓
+DigitalEmployeeSpec candidate
+```
+
+The first implementation deliberately contains no model call, network call, MCP server, database, or production write. It proves the composition boundary before adding runtime authority.
+
+## Repository split
+
+| Public GitHub | Private local Forgejo / tenant plane |
+|---|---|
+| Generic schemas and Role Packs | Customer evidence and identities |
+| Synthetic fixtures | Private policies and authority limits |
+| Deterministic compiler and evals | System mappings and connector implementations |
+| Policy skeletons | Commercial contracts and live outcomes |
+| Anonymized failure taxonomy | Production Runtime Receipts |
+
+Private material must never be copied into this repository. The dual-forge live lane is currently unbound and is reported as `ABSENT` / `NOT_EXERCISED`, not simulated.
+
+## Architecture
+
+Read [`docs/architecture/README.md`](docs/architecture/README.md) and [`AGENTS.md`](AGENTS.md) before implementation.
+
+## Development
+
+Requires Node.js 22 or newer and no third-party runtime dependency for the bootstrap slice.
+
+```bash
+npm test
+npm run check
+```
+
+## Stacked delivery
+
+```text
+main
+└─ agent/00-bootstrap-control-plane
+   └─ agent/01-contracts
+      └─ agent/02-role-overlay-compiler
+```
+
+Each child PR targets its parent branch. Merge, release, permission changes, and production promotion remain Human-owned.

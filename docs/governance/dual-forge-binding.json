@@ -1,0 +1,73 @@
+{
+  "schema_version": "dual-forge-repository-loop/v3",
+  "binding_state": "DRAFT_GITHUB_INGRESS_ONLY",
+  "repository": {
+    "name": "ed3c/fde-agent-platform",
+    "id": 1335749319,
+    "default_branch": "main"
+  },
+  "authority": {
+    "implementation": "local-forgejo",
+    "publication": "github",
+    "actions": "github-actions"
+  },
+  "github": {
+    "repository_full_name": "ed3c/fde-agent-platform",
+    "remote_name": "github",
+    "observed_main_sha": "709abf40242aa3fba7ee971616f1a472532a488a",
+    "observation": "github-connector"
+  },
+  "forgejo": {
+    "binding_state": "ABSENT",
+    "repository": null,
+    "repository_id": null,
+    "remote_name": "forgejo",
+    "observed_main_sha": null
+  },
+  "local": {
+    "binding_state": "ABSENT",
+    "main_branch": "main",
+    "local_main_sha": null,
+    "worktree_root": "HOST_OWNED"
+  },
+  "issue_namespaces": {
+    "forgejo": "forgejo#",
+    "github": "github#"
+  },
+  "issue_links": [],
+  "implementation": {
+    "forgejo_delivery": null
+  },
+  "history": [
+    "RUNTIME_BOUND",
+    "GITHUB_BOUND"
+  ],
+  "observations": {
+    "github_main": "PASS",
+    "forgejo_main": "ABSENT",
+    "local_main": "ABSENT"
+  },
+  "reconciliation": null,
+  "publication": {
+    "candidate_sha": null,
+    "git_proof": null,
+    "decision_bundle": null
+  },
+  "actions": {
+    "proof": {
+      "check_name": null,
+      "transport": null,
+      "observation": null,
+      "snapshot": null
+    }
+  },
+  "evidence": {
+    "github_ingress": "PASS",
+    "forgejo_runtime": "ABSENT",
+    "local_worktrees": "ABSENT",
+    "local_main_merge": "NOT_EXERCISED",
+    "github_reconciliation": "NOT_EXERCISED",
+    "github_actions": "NOT_EXERCISED",
+    "final_merge": "HUMAN_ADMIT_REQUIRED"
+  }
+}

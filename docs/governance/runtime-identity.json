@@ -1,0 +1,23 @@
+{
+  "schema": "dual-forge/runtime-identity-receipt/v1",
+  "runtime": "CHATGPT_GITHUB_CONNECTOR",
+  "host": "chatgpt-connected-github-session",
+  "repository": {
+    "full_name": "ed3c/fde-agent-platform",
+    "id": 1335749319
+  },
+  "working_directory_state": "ABSENT",
+  "local_git_capability": "PASS",
+  "github_connector_capability": "PASS",
+  "github_actions_identity": "NOT_EXERCISED",
+  "forgejo_binding": "ABSENT",
+  "git_town_executable": "ABSENT",
+  "gh_executable": "ABSENT",
+  "branch": "main",
+  "head_sha": "709abf40242aa3fba7ee971616f1a472532a488a",
+  "writer_lease": "github-connector-session/issues-2-4",
+  "notes": [
+    "A shell and git executable were observed, but no local checkout could be bound.",
+    "Connector capability does not prove a persistent user worktree, local Forgejo, Git Town, or GitHub Actions."
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "schema": "agentic-tech-lead/task-contract/v1",
+  "task_id": "fde-agent-platform-bootstrap-v0.1",
+  "mode": "STACK",
+  "subject": {
+    "base_commit": "709abf40242aa3fba7ee971616f1a472532a488a",
+    "base_tree": "d48c4961c3601497f04485d561c2a22935da7379"
+  },
+  "goal": {
+    "objective": "Bootstrap governance, lock public contracts, and implement the deterministic Role Pack plus Tenant Overlay compiler slice.",
+    "non_goals": [
+      "production deployment",
+      "external model calls",
+      "customer data",
+      "permission widening",
+      "automatic merge"
+    ]
+  },
+  "paths": {
+    "write": [
+      "AGENTS.md",
+      "README.md",
+      ".github/**",
+      "docs/**",
+      "contracts/**",
+      "fixtures/**",
+      "scripts/**",
+      "src/**",
+      "test/**",
+      "package.json",
+      ".git-town.toml"
+    ],
+    "read_only": [
+      "skills-shared canonical Skill bodies"
+    ],
+    "forbidden": [
+      "tenant-overlays-private/**",
+      "customer-data/**",
+      ".receipts/**",
+      "**/.env*",
+      "**/*credential*"
+    ],
+    "changed": []
+  },
+  "architecture": {
+    "interface_locks": [
+      {
+        "path": "docs/architecture/README.md",
+        "sha256": "b7de7dcf663d4b88e9ff17cdc4a9918a550779f578892bd6fe1512b8ad481e48"
+      }
+    ],
+    "dependency_policy": "NO_NEW_DEPENDENCIES",
+    "allowed_dependencies": [],
+    "state_policy": "Candidate lifecycle is DRAFT -> VALIDATED -> COMPILED; all side-effect states are future and Human-admitted.",
+    "no_double_graph": true
+  },
+  "providers": [
+    {
+      "id": "github-connector",
+      "role": "repository-ingress-and-draft-publication",
+      "state": "EXACT",
+      "subject": {
+        "commit": "709abf40242aa3fba7ee971616f1a472532a488a",
+        "tree": "d48c4961c3601497f04485d561c2a22935da7379",
+        "version": "connected-github-session",
+        "coverage_sha256": "f3361de7c23cedba523db4a15a2866b2b0c24e9723da0707d2f8038168affb37",
+        "source_readback": true
+      }
+    },
+    {
+      "id": "local-node-runtime",
+      "role": "deterministic-test-provider",
+      "state": "DEGRADED"
+    },
+    {
+      "id": "git-town",
+      "role": "branch-sync-provider",
+      "state": "BLOCKED"
+    },
+    {
+      "id": "local-forgejo",
+      "role": "implementation-forge",
+      "state": "BLOCKED"
+    }
+  ],
+  "branches": [
+    {
+      "name": "agent/00-bootstrap-control-plane",
+      "parent": "main",
+      "focus": "repository governance and Shadow Architecture",
+      "write": [
+        "AGENTS.md",
+        "README.md",
+        ".github/**",
+        "docs/**",
+        "scripts/check-governance.mjs",
+        "test/governance.test.mjs",
+        "package.json",
+        ".git-town.toml"
+      ]
+    },
+    {
+      "name": "agent/01-contracts",
+      "parent": "agent/00-bootstrap-control-plane",
+      "focus": "versioned public contracts and negative fixtures",
+      "write": [
+        "contracts/**",
+        "fixtures/valid/**",
+        "fixtures/invalid/**",
+        "scripts/check-contracts.mjs",
+        "scripts/lib/contract-validation.mjs",
+        "test/contracts.test.mjs",
+        "package.json"
+      ]
+    },
+    {
+      "name": "agent/02-role-overlay-compiler",
+      "parent": "agent/01-contracts",
+      "focus": "deterministic compiler and CLI vertical slice",
+      "write": [
+        "src/**",
+        "fixtures/expected/**",
+        "test/compiler.test.mjs",
+        "README.md",
+        "package.json"
+      ]
+    }
+  ],
+  "acceptance": {
+    "commands": [
+      [
+        "npm",
+        "test"
+      ],
+      [
+        "npm",
+        "run",
+        "check"
+      ]
+    ],
+    "immutable_assertions": [
+      "Overlay authority is a subset of Role Pack authority.",
+      "Prohibited actions remain prohibited.",
+      "Public repository contains no private tenant or credential-bearing material.",
+      "Compile output is deterministic and binds input digests."
+    ]
+  },
+  "budgets": {
+    "max_repairs_per_signature": 3,
+    "max_workers": 3
+  },
+  "automation": {
+    "git_town_admitted": false,
+    "auto_restack": false,
+    "auto_publish": false,
+    "auto_resolve_conflicts": false,
+    "auto_merge": false
+  }
+}

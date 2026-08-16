@@ -1,0 +1,81 @@
+{
+  "schema": "fde-agent-platform/spatial-system-contract/v1",
+  "subject": {
+    "repository": "ed3c/fde-agent-platform",
+    "base_commit": "709abf40242aa3fba7ee971616f1a472532a488a",
+    "base_tree": "d48c4961c3601497f04485d561c2a22935da7379"
+  },
+  "complexity": "LEVEL_C",
+  "mode": "MONITOR",
+  "gate": "READY_FOR_PROTOTYPE",
+  "implemented_lifecycle": [
+    "DRAFT",
+    "VALIDATED",
+    "COMPILED"
+  ],
+  "future_lifecycle": [
+    "SHADOWED",
+    "CANARY_ADMITTED",
+    "MANAGED_PRODUCTION",
+    "FROZEN",
+    "ROLLED_BACK"
+  ],
+  "realms": [
+    {
+      "id": "R1",
+      "name": "public-control-plane",
+      "owner": "repository-maintainers",
+      "authority": "candidate-generation-only"
+    },
+    {
+      "id": "R2",
+      "name": "private-tenant-plane",
+      "owner": "customer-or-private-forge",
+      "authority": "restrict-within-role-pack",
+      "runtime_state": "ABSENT"
+    },
+    {
+      "id": "R3",
+      "name": "model-plane",
+      "owner": "approved-provider",
+      "authority": "proposal-only",
+      "runtime_state": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "R4",
+      "name": "execution-plane",
+      "owner": "typed-runtime",
+      "authority": "policy-bounded-side-effects",
+      "runtime_state": "NOT_IMPLEMENTED"
+    },
+    {
+      "id": "R5",
+      "name": "human-authority-plane",
+      "owner": "business-risk-security-repository-authorities",
+      "authority": "irreversible-transitions"
+    }
+  ],
+  "invariants": [
+    "INV-001-overlay-authority-subset",
+    "INV-002-public-private-boundary",
+    "INV-003-prohibited-actions-preserved",
+    "INV-004-deterministic-composition",
+    "INV-005-source-digests-bound",
+    "INV-006-human-boundaries-preserved",
+    "INV-007-compile-is-not-deploy",
+    "INV-008-evidence-lanes-separated"
+  ],
+  "blocking_unknowns": [
+    "local-forgejo-binding",
+    "git-town-executable-admission"
+  ],
+  "evidence_ceiling": "L2_DETERMINISTIC_UNIT_PROOF",
+  "human_owned": [
+    "semantic-conflict-resolution",
+    "merge",
+    "permission-change",
+    "release-promotion",
+    "production-deployment",
+    "destructive-rollback"
+  ]
+}
