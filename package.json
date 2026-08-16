@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node --test test/*.test.mjs",
-    "check": "node scripts/check-governance.mjs && node scripts/check-contracts.mjs && node --test test/*.test.mjs",
+    "check": "node scripts/check-governance.mjs && node scripts/check-shared-skill-binding.mjs && node scripts/check-contracts.mjs && node --test test/*.test.mjs",
     "compile:demo": "node src/cli.mjs compile --role-pack fixtures/valid/role-pack.customer-support.json --tenant-overlay fixtures/valid/tenant-overlay.demo.json"
   }
 }
