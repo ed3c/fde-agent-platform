@@ -1,0 +1,38 @@
+[
+  {
+    "schema": "fde-agent/eval-case/v1",
+    "case_id": "duplicate-side-effect",
+    "description": "Duplicate delivery cannot duplicate a side effect",
+    "fixture_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "oracle_type": "DETERMINISTIC",
+    "blocking": true,
+    "hard_assertion": true,
+    "expected_state": "PASS",
+    "mutation_id": null,
+    "source_class": "SYNTHETIC_ANALOG"
+  },
+  {
+    "schema": "fde-agent/eval-case/v1",
+    "case_id": "mutation-disable-idempotency",
+    "description": "Verifier kills a planted idempotency defect",
+    "fixture_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "oracle_type": "DETERMINISTIC",
+    "blocking": true,
+    "hard_assertion": true,
+    "expected_state": "PASS",
+    "mutation_id": "disable-idempotency",
+    "source_class": "SYNTHETIC_ANALOG"
+  },
+  {
+    "schema": "fde-agent/eval-case/v1",
+    "case_id": "explanation-quality",
+    "description": "Supplementary explanation review",
+    "fixture_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "oracle_type": "LLM_JUDGE_SUPPLEMENTARY",
+    "blocking": false,
+    "hard_assertion": false,
+    "expected_state": "PASS",
+    "mutation_id": null,
+    "source_class": "SYNTHETIC_ANALOG"
+  }
+]

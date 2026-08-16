@@ -1,0 +1,17 @@
+{
+  "schema": "fde-agent/context-query/v1",
+  "query_id": "ap-route-review",
+  "tenant_ref": "tenant-demo",
+  "task_subject": "ap-exception-routing",
+  "process_twin_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "required_node_ids": ["route-exception"],
+  "optional_node_ids": ["poisoned-summary"],
+  "requested_views": ["SYSTEM_ENFORCED"],
+  "mandatory_policy_subjects": ["policy:ap-route/v1"],
+  "as_of": "2026-08-16T00:00:00Z",
+  "max_nodes": 4,
+  "max_tokens": 200,
+  "max_data_classification": "CONFIDENTIAL",
+  "contradiction_policy": "INCLUDE_AND_DEGRADE",
+  "decision_use": "EXPLORATORY"
+}

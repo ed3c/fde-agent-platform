@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ed3c.github.io/fde-agent-platform/contracts/eval-receipt.schema.json",
+  "title": "FDE Eval Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "receipt_id", "eval_pack_ref", "subject", "evaluator", "environment", "command", "started_at", "finished_at", "case_results", "mutation_kills", "coverage", "overall_state", "artifact_digest"],
+  "properties": {
+    "schema": { "const": "fde-agent/eval-receipt/v1" },
+    "receipt_id": { "type": "string" },
+    "eval_pack_ref": { "type": "object" },
+    "subject": { "type": "object" },
+    "evaluator": { "type": "object" },
+    "environment": { "type": "string" },
+    "command": { "type": "string" },
+    "started_at": { "type": "string", "format": "date-time" },
+    "finished_at": { "type": "string", "format": "date-time" },
+    "case_results": { "type": "array" },
+    "mutation_kills": { "type": "integer", "minimum": 0 },
+    "coverage": { "type": "object" },
+    "overall_state": { "enum": ["PASS", "FAIL", "NOT_EXERCISED", "SKIPPED_BY_POLICY"] },
+    "artifact_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}
