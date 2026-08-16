@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/policy-request/v1",
+  "title": "PolicyRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "request_id", "tenant_ref", "digital_employee_spec_digest", "context_pack_digest",
+    "policy_subjects", "action_id", "operation_id", "requested_action_class", "caller_identity_ref",
+    "caller_roles", "authenticated", "requested_at", "data_classification", "region",
+    "operation_identity", "idempotency_key_present", "approval", "authority_envelope"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/policy-request/v1" },
+    "request_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "tenant_ref": { "type": "string", "minLength": 1 },
+    "digital_employee_spec_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "context_pack_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "policy_subjects": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "action_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "operation_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "requested_action_class": { "enum": ["READ", "RECOMMEND", "DRAFT", "REVERSIBLE_ACTION", "APPROVED_COMMIT", "PROHIBITED"] },
+    "caller_identity_ref": { "type": "string", "minLength": 1 },
+    "caller_roles": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "authenticated": { "type": "boolean" },
+    "requested_at": { "type": "string", "format": "date-time" },
+    "data_classification": { "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"] },
+    "region": { "type": "string", "minLength": 1 },
+    "operation_identity": { "type": "string", "minLength": 1 },
+    "idempotency_key_present": { "type": "boolean" },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "approver_identity_ref", "approver_role", "subject_digest", "expires_at"],
+      "properties": {
+        "status": { "enum": ["NONE", "PENDING", "CONFIRMED", "EXPIRED", "REVOKED"] },
+        "approver_identity_ref": { "type": ["string", "null"] },
+        "approver_role": { "type": ["string", "null"] },
+        "subject_digest": { "type": ["string", "null"] },
+        "expires_at": { "type": ["string", "null"] }
+      }
+    },
+    "authority_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_action_ids", "prohibited_action_ids", "maximum_action_class", "system_capabilities", "required_separation_of_duties", "model_decision_permitted"],
+      "properties": {
+        "allowed_action_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "prohibited_action_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "maximum_action_class": { "enum": ["READ", "RECOMMEND", "DRAFT", "REVERSIBLE_ACTION", "APPROVED_COMMIT", "PROHIBITED"] },
+        "system_capabilities": { "type": "array" },
+        "required_separation_of_duties": { "type": "boolean" },
+        "model_decision_permitted": { "const": false }
+      }
+    }
+  }
+}
