@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.ed3c.dev/fde-agent/runtime-receipt/v1",
+  "title": "FDE Agent Runtime Receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "receipt_id",
+    "subject_digest",
+    "operation",
+    "state",
+    "started_at",
+    "completed_at",
+    "input_digests",
+    "assertions",
+    "evidence",
+    "human_admit"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/runtime-receipt/v1" },
+    "receipt_id": { "type": "string", "minLength": 1 },
+    "subject_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "operation": { "type": "string", "minLength": 1 },
+    "state": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "ABSENT",
+        "NOT_IMPLEMENTED",
+        "NOT_EXERCISED",
+        "SKIPPED_BY_POLICY",
+        "HUMAN_ADMIT_REQUIRED"
+      ]
+    },
+    "started_at": { "type": "string", "format": "date-time" },
+    "completed_at": { "type": "string", "format": "date-time" },
+    "input_digests": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["assertion_id", "state"],
+        "properties": {
+          "assertion_id": { "type": "string", "minLength": 1 },
+          "state": { "enum": ["PASS", "FAIL", "NOT_EXERCISED"] },
+          "evidence_ref": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["evidence_id", "level", "subject"],
+        "properties": {
+          "evidence_id": { "type": "string", "minLength": 1 },
+          "level": { "enum": ["L0", "L1", "L2", "L3", "L4", "L5", "L6"] },
+          "subject": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "human_admit": { "enum": ["NOT_REQUIRED", "REQUIRED", "GRANTED", "DENIED"] }
+  }
+}
