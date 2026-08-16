@@ -2,95 +2,88 @@
 
 ## Mission
 
-Build the FDE Agent Platform as a public, domain-neutral **Outcome Delivery OS**. The first executable slice compiles a reusable Role Pack and a private Tenant Overlay into a governed `DigitalEmployeeSpec` candidate.
+Build the FDE Agent Platform as a public, domain-neutral **Outcome Delivery OS**. The current executable slice compiles a reusable Role Pack and a synthetic Tenant Overlay into a governed `DigitalEmployeeSpec` candidate.
 
 ## Mandatory read order
 
 Before changing a path, read:
 
 1. this file;
-2. `docs/architecture/README.md`;
-3. `docs/architecture/system-contract.json`;
-4. `docs/architecture/shadow-ledger.md`;
-5. `docs/governance/git-town-repo-profile.md`;
-6. `docs/governance/dual-forge-binding.json`;
-7. `docs/governance/path-ownership.json`;
-8. the owning GitHub issue and nearest `README.md`.
+2. `docs/governance/skills-shared-binding.json`;
+3. `docs/governance/skills-binding.md`;
+4. `docs/architecture/README.md`;
+5. `docs/architecture/system-contract.json`;
+6. `docs/architecture/shadow-ledger.md`;
+7. `docs/governance/git-town-repo-profile.md`;
+8. `docs/governance/dual-forge-binding.json`;
+9. `docs/governance/path-ownership.json`;
+10. the owning GitHub issue and nearest `README.md`.
 
-An absent input remains `ABSENT`. Do not infer it from branch names or prior repositories.
+An absent input remains `ABSENT`. Do not infer it from branch names, model memory, or another repository.
 
-## Canonical shared procedures
+## Shared-procedure authority
 
-This repository binds, but does not copy or shadow, these canonical procedures from `ed3c/skills-shared`:
+`ed3c/skills-shared` is the canonical source of execution procedures for every unfinished issue. The exact repository subject and canonical paths are recorded in `docs/governance/skills-shared-binding.json`.
 
-- `git-town-stacked-pr-worker`;
-- `dual-forge-repository-loop`;
-- `spatial-loop-systems-engineering` in default `MONITOR` mode;
-- `procedural-shadow-runtime` for pre-side-effect and receipt closure;
-- `agentic-tech-lead-orchestration` for contract-first task DAGs and stacked branches.
+The Skill bodies remain exclusively in `skills-shared`.
 
-Repository-local files contain only consumer profiles, task packets, tests, adapters, and receipts.
+This consumer repository must not contain or generate:
+
+- a local `SKILL.md`;
+- a tracked `skills/` mirror of shared procedures;
+- a copied shared Skill frontmatter/body;
+- a forked shared system prompt, publication policy, or reference procedure;
+- a modified local substitute presented as the canonical Skill.
+
+Repository-local files may contain only consumer-owned bindings, profiles, task packets, architecture contracts, adapters, tests, and exact-subject receipts. They may identify an applicable shared procedure by repository, immutable commit, path, and procedure ID, but must not reproduce its body.
+
+A shared Skill update never silently changes an active issue. Rebinding to a newer `skills-shared` commit requires an explicit issue, exact-subject review, and revalidation.
+
+## Unfinished-issue execution contract
+
+Every unfinished implementation issue must state:
+
+- exact `skills-shared` subject and applicable canonical paths;
+- the procedure delta required for that issue;
+- objective, non-goals, exact base, path lease, and interface locks;
+- acceptance commands, immutable assertions, and negative controls;
+- evidence ceiling, cleanup, rollback subject, and Human-owned operations.
+
+The shared procedures direct **how** the issue is executed. The issue owns **what** changes in this repository and how its result is verified. Mentioning a Skill is not execution, and execution without exact-subject evidence is not verification.
 
 ## Public/private boundary
 
-The public repository may contain:
+The public repository may contain generic contracts, synthetic fixtures, domain-neutral Role Packs, policy skeletons, deterministic validators/compilers, evaluation harnesses, and anonymized failure taxonomies.
 
-- generic contracts and schemas;
-- synthetic fixtures;
-- domain-neutral Role Packs;
-- policy skeletons;
-- deterministic validators and compilers;
-- evaluation harnesses;
-- anonymized failure taxonomies.
-
-The public repository must never contain:
-
-- customer documents, meetings, identities, event logs, or business amounts;
-- credentials, tokens, cookies, browser profiles, private keys, or `.env` values;
-- customer-specific policies, system mappings, connector implementations, or commercial contracts;
-- live Tenant Overlays or production Runtime Receipts.
+The public repository must never contain customer documents, meetings, identities, event logs, business amounts, credentials, private policies, tenant mappings, customer-specific connectors, commercial contracts, live Tenant Overlays, or production Runtime Receipts.
 
 Private artifacts belong to the admitted local Forgejo/private lane. Until that lane is bound, they are `ABSENT`, not simulated.
 
-## Architecture laws
+## Repository-specific architecture invariants
 
 - A Tenant Overlay may restrict a Role Pack but may never widen its authority.
 - Prohibited actions survive every composition and version upgrade.
 - Human-owned approval and escalation boundaries cannot be removed by a model or overlay.
-- Same normalized inputs must produce byte-equivalent normalized output.
+- Same normalized inputs produce byte-equivalent normalized output.
 - Every compiled artifact binds exact input digests and contract versions.
-- Deterministic rules own authorization, graph validation, idempotency, and schema enforcement.
+- Deterministic rules own authorization, schema enforcement, graph validation, idempotency, and release gates.
 - Model output is a candidate, never production authority.
-- No external side effect is introduced without identity, idempotency, reconciliation, and rollback semantics.
+- No external side effect is introduced without operation identity, idempotency, reconciliation, and rollback semantics.
 
-## Shadow Architecture loop
+## Evidence and authority boundary
 
-The Builder owns implementation. The Shadow Architect is read-only and records material deltas in `docs/architecture/shadow-ledger.md`.
+A green local test proves only its exact local subject. Git Town execution, local Forgejo delivery, GitHub Actions, remote ancestry, merge, release, and production admission remain separate evidence lanes.
 
-At each material checkpoint ask:
-
-1. What became newly possible?
-2. What must now remain true?
-3. How would we know it is false?
-
-Use `L3 BLOCK` before permission widening, irreversible writes, destructive migration, secret exposure, evidence promotion, production deployment, or autonomous workflow mutation without a verified rollback path.
-
-## Branch and writer policy
-
-- One issue owns one branch writer and one path lease.
-- Child branches consume an explicit parent contract.
-- Independent path-disjoint work is a sibling, not an artificial child.
-- No automatic semantic conflict resolution, force push, merge, `git town ship`, permission change, or production promotion.
-- Git Town synchronization is bounded, non-interactive, `--no-auto-resolve`, and no-push by default.
-- Three materially different failures with the same signature stop blind repair and require a fresh diagnosis/new worktree.
+Semantic conflict resolution, merge, permission changes, secret setup, legal acceptance, release promotion, production deployment, and destructive rollback remain Human-owned.
 
 ## Current stack
 
 ```text
 main
-└─ agent/00-bootstrap-control-plane   (#2)
-   └─ agent/01-contracts              (#3)
-      └─ agent/02-role-overlay-compiler (#4)
+└─ agent/00-bootstrap-control-plane      (#2)
+   └─ agent/01-contracts                 (#3)
+      └─ agent/02-role-overlay-compiler  (#4)
+         └─ agent/03-shared-procedure-bindings (#14)
 ```
 
 ## Verification
@@ -101,5 +94,3 @@ Run the strongest commands available for the active branch:
 npm test
 npm run check
 ```
-
-A green local test proves only its exact local subject. Git Town execution, Forgejo delivery, GitHub Actions, remote ancestry, merge, and production admission remain separate evidence lanes.
