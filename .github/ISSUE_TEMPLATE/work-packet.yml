@@ -1,5 +1,5 @@
 name: Agentic work packet
-description: Contract-first implementation unit for one branch writer
+description: Contract-first implementation unit governed by canonical skills-shared procedures
 body:
   - type: textarea
     id: objective
@@ -16,30 +16,49 @@ body:
   - type: input
     id: base
     attributes:
-      label: Exact base SHA
+      label: Exact repository base SHA
+    validations:
+      required: true
+  - type: textarea
+    id: shared_procedures
+    attributes:
+      label: Shared procedure bindings
+      description: List ed3c/skills-shared, the immutable subject SHA, and only the applicable canonical paths. Do not paste Skill bodies.
+      placeholder: |
+        repository: ed3c/skills-shared
+        subject_sha: <40-hex>
+        applicable_paths:
+          - skills/<name>/SKILL.md
+    validations:
+      required: true
+  - type: textarea
+    id: procedure_delta
+    attributes:
+      label: Procedure delta and evidence ceiling
+      description: Name only the obligations required for this issue, what prior evidence already satisfies, and the highest evidence this runtime can honestly produce.
     validations:
       required: true
   - type: textarea
     id: paths
     attributes:
-      label: Path lease and forbidden paths
+      label: Path lease, read-only paths, and forbidden paths
     validations:
       required: true
   - type: textarea
     id: invariants
     attributes:
-      label: Hard invariants
+      label: Hard invariants and interface locks
     validations:
       required: true
   - type: textarea
     id: evals
     attributes:
-      label: Verification and negative controls
+      label: Verification, immutable assertions, and negative controls
     validations:
       required: true
   - type: textarea
     id: rollback
     attributes:
-      label: Rollback subject and Human-owned operations
+      label: Cleanup, rollback subject, and Human-owned operations
     validations:
       required: true
