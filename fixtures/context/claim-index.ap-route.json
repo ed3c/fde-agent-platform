@@ -1,0 +1,38 @@
+[
+  {
+    "claim_id": "claim-detect",
+    "claim_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "tenant_ref": "tenant-demo",
+    "source_id": "erp-schema",
+    "recorded_at": "2026-08-15T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": null,
+    "data_classification": "INTERNAL",
+    "readiness_state": "READY",
+    "estimated_tokens": 20
+  },
+  {
+    "claim_id": "claim-route-a",
+    "claim_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "tenant_ref": "tenant-demo",
+    "source_id": "routing-policy",
+    "recorded_at": "2026-08-15T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": null,
+    "data_classification": "CONFIDENTIAL",
+    "readiness_state": "READY",
+    "estimated_tokens": 24
+  },
+  {
+    "claim_id": "claim-poison",
+    "claim_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "tenant_ref": "tenant-demo",
+    "source_id": "high-similarity-unverified",
+    "recorded_at": "2026-08-15T00:00:00Z",
+    "valid_from": "2026-01-01T00:00:00Z",
+    "valid_to": null,
+    "data_classification": "PUBLIC",
+    "readiness_state": "DEGRADED",
+    "estimated_tokens": 5
+  }
+]

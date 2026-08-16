@@ -1,0 +1,62 @@
+{
+  "schema": "fde-agent/process-twin/v1",
+  "process_twin_id": "ap-twin",
+  "version": "1.0.0",
+  "tenant_ref": "tenant-demo",
+  "process_id": "ap-exception",
+  "generated_at": "2026-08-16T00:00:00Z",
+  "input_claim_digests": ["1111111111111111111111111111111111111111111111111111111111111111"],
+  "nodes": [
+    {
+      "node_id": "detect-mismatch",
+      "kind": "DECISION",
+      "owner_role": "ap-operator",
+      "view": "SYSTEM_ENFORCED",
+      "source_claim_ids": ["claim-detect"],
+      "preconditions": [],
+      "postconditions": ["mismatch-known"],
+      "state": "ACTIVE"
+    },
+    {
+      "node_id": "route-exception",
+      "kind": "TASK",
+      "owner_role": "ap-process-owner",
+      "view": "SYSTEM_ENFORCED",
+      "source_claim_ids": ["claim-route-a"],
+      "preconditions": ["mismatch-known"],
+      "postconditions": ["owner-assigned"],
+      "state": "ACTIVE"
+    },
+    {
+      "node_id": "poisoned-summary",
+      "kind": "TASK",
+      "owner_role": "unknown",
+      "view": "DOCUMENTED",
+      "source_claim_ids": ["claim-poison"],
+      "preconditions": [],
+      "postconditions": [],
+      "state": "ACTIVE"
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge-detect-route",
+      "from": "detect-mismatch",
+      "to": "route-exception",
+      "relation": "PRECEDES",
+      "condition": null,
+      "controlled_cycle_id": null
+    }
+  ],
+  "controlled_cycles": [],
+  "unresolved_contradictions": [],
+  "view_digests": {
+    "DOCUMENTED": "2222222222222222222222222222222222222222222222222222222222222222",
+    "OBSERVED": "3333333333333333333333333333333333333333333333333333333333333333",
+    "SYSTEM_ENFORCED": "4444444444444444444444444444444444444444444444444444444444444444",
+    "APPROVED_TARGET": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "topological_order": ["detect-mismatch", "route-exception", "poisoned-summary"],
+  "twin_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "execution_authority": "NONE"
+}
