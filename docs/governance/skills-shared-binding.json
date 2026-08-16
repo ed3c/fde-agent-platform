@@ -1,0 +1,79 @@
+{
+  "schema": "fde-agent-platform/shared-procedure-binding/v1",
+  "mode": "REMOTE_CANONICAL_NO_VENDOR",
+  "source": {
+    "repository": "ed3c/skills-shared",
+    "repository_id": 1326262274,
+    "subject_sha": "ec5a240fa3cbafda2c6a8bce0ae12143e0992f80"
+  },
+  "bindings": [
+    {
+      "id": "git-town-stacked-pr-worker",
+      "path": "skills/git-town-stacked-pr-worker/SKILL.md",
+      "use": "branch graph, writer leases, bounded synchronization, and separated publication evidence"
+    },
+    {
+      "id": "dual-forge-repository-loop",
+      "path": "skills/dual-forge-repository-loop/SKILL.md",
+      "use": "GitHub ingress, local Forgejo implementation authority, and exact-SHA crossing receipts"
+    },
+    {
+      "id": "spatial-loop-systems-engineering",
+      "path": "skills/spatial-loop-systems-engineering/SKILL.md",
+      "use": "constraint model, state machines, invariants, failure surfaces, probes, and evidence ceilings"
+    },
+    {
+      "id": "shadow-architecture-watch-loop",
+      "path": "skills/spatial-loop-systems-engineering/references/architecture-watch-loop.md",
+      "use": "read-only architecture delta monitoring and checkpoint classification"
+    },
+    {
+      "id": "procedural-shadow-runtime",
+      "path": "skills/procedural-shadow-runtime/SKILL.md",
+      "use": "applicable procedure delta, side-effect admission, and terminal evidence dispositions"
+    },
+    {
+      "id": "agentic-tech-lead-orchestration",
+      "path": "skills/agentic-tech-lead-orchestration/SKILL.md",
+      "use": "contract-first issue DAG, interface locks, context provenance, path leases, and bounded repair"
+    }
+  ],
+  "consumer_policy": {
+    "skill_body_location": "skills-shared-only",
+    "local_skill_md": "denied",
+    "local_skills_directory": "denied",
+    "copied_skill_frontmatter": "denied",
+    "mutable_subject_for_active_issue": "denied",
+    "repo_owned_artifacts": [
+      "bindings",
+      "profiles",
+      "task_packets",
+      "architecture_contracts",
+      "adapters",
+      "tests",
+      "fixtures",
+      "receipts"
+    ],
+    "human_owned_operations": [
+      "semantic_conflict_resolution",
+      "merge",
+      "permission_change",
+      "secret_setup",
+      "legal_acceptance",
+      "release_promotion",
+      "production_deployment",
+      "destructive_rollback"
+    ]
+  },
+  "evidence": {
+    "binding_manifest": "IMPLEMENTED",
+    "local_skill_vendoring_negative_control": "PASS_L2_DETERMINISTIC",
+    "copied_frontmatter_negative_control": "PASS_L2_DETERMINISTIC",
+    "mutable_subject_negative_control": "PASS_L2_DETERMINISTIC",
+    "issue_template_binding_control": "PASS_L2_DETERMINISTIC",
+    "live_git_town": "NOT_EXERCISED",
+    "local_forgejo": "ABSENT",
+    "github_actions": "NOT_EXERCISED",
+    "production": "HUMAN_ADMIT_REQUIRED"
+  }
+}
