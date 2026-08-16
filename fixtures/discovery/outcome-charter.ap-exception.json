@@ -1,0 +1,45 @@
+{
+  "schema": "fde-agent/outcome-charter/v1",
+  "outcome_charter_id": "ap-exception-charter",
+  "opportunity_id": "ap-invoice-exception",
+  "baseline": {
+    "state": "VERIFIED",
+    "source_of_truth": "synthetic-ap-case-ledger-v1",
+    "start": "2026-05-01T00:00:00Z",
+    "end": "2026-07-31T23:59:59Z",
+    "owner": "ap-process-owner",
+    "confidence": 0.9,
+    "external_factor_policy": "exclude planned ERP downtime"
+  },
+  "counterfactual": {
+    "method": "MATCHED_CONTROL",
+    "control_subject": "synthetic-human-reference-queue-v1",
+    "external_factor_policy": "match supplier and exception type",
+    "dispute_owner_role": "finance-control-owner"
+  },
+  "metrics": [
+    {
+      "metric_id": "handling-minutes",
+      "unit": "minutes_per_case",
+      "grain": "resolved_exception",
+      "direction": "DECREASE",
+      "baseline_value": 42,
+      "target_value": 25,
+      "source_of_truth": "synthetic-ap-case-ledger-v1",
+      "owner": "ap-process-owner"
+    }
+  ],
+  "kill_criteria": [
+    {
+      "criterion_id": "unauthorized-draft",
+      "metric_id": "handling-minutes",
+      "operator": "LT",
+      "threshold": 0,
+      "owner": "finance-control-owner",
+      "reason": "sentinel criterion is replaced by a safety event oracle during implementation"
+    }
+  ],
+  "pricing_eligibility": "OUTCOME_LINKED_CANDIDATE",
+  "approved_by": ["cfo-role", "finance-control-owner"],
+  "source_subjects": ["fixture:synthetic-ap-baseline-v1"]
+}

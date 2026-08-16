@@ -1,0 +1,20 @@
+{
+  "schema": "fde-agent/opportunity-candidate/v1",
+  "opportunity_id": "ap-invoice-exception",
+  "title": "AP invoice and purchase-order exception triage",
+  "owners": {
+    "executive_sponsor": "cfo-role",
+    "outcome_owner": "ap-process-owner",
+    "data_owner": "finance-data-owner",
+    "risk_owner": "finance-control-owner",
+    "it_owner": "erp-platform-owner"
+  },
+  "dimensions": {
+    "value": 4, "frequency": 5, "observability": 5, "controllability": 4, "reversibility": 4,
+    "attribution": 4, "reuse_potential": 5, "integration_cost": 3, "risk": 3, "organizational_resistance": 2
+  },
+  "three_high_signals": { "high_people_cost": true, "high_money_cost": false, "high_time_cost": true },
+  "decision": "CANDIDATE",
+  "assumptions": ["synthetic sandbox exposes invoice and PO read APIs"],
+  "source_subjects": ["issue:ed3c/fde-agent-platform#25"]
+}

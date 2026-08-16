@@ -1,0 +1,17 @@
+{
+  "schema": "fde-agent/bounded-value-pilot/v1",
+  "pilot_id": "ap-exception-pilot-v1",
+  "opportunity_id": "ap-invoice-exception",
+  "outcome_charter_id": "ap-exception-charter",
+  "mode": "BOUNDED_VALUE_PILOT",
+  "action_ceiling": "DRAFT",
+  "technical_safety_poc_required": false,
+  "max_duration_days": 21,
+  "max_cases": 500,
+  "entry_criteria": ["baseline verified", "synthetic connector contract admitted"],
+  "exit_criteria": ["zero unauthorized writes", "handling-time estimate produced"],
+  "kill_criterion_ids": ["unauthorized-draft"],
+  "allowed_actions": ["read-invoice", "read-purchase-order", "create-draft-exception"],
+  "state": "READY_FOR_REVIEW",
+  "source_subjects": ["issue:ed3c/fde-agent-platform#25"]
+}
