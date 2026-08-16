@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fde-agent-platform.dev/contracts/connector-capability/v1",
+  "title": "ConnectorCapability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema", "capability_id", "tenant_ref", "connector_id", "system_id", "connector_version",
+    "operation_id", "action_class", "side_effect_class", "reversible", "idempotency_mode",
+    "compensation_operation_id", "audit_required", "sandbox_supported",
+    "maximum_data_classification", "allowed_regions", "retention_mode", "approval_mode",
+    "required_approver_roles", "postcondition_observer", "state", "capability_digest"
+  ],
+  "properties": {
+    "schema": { "const": "fde-agent/connector-capability/v1" },
+    "capability_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "tenant_ref": { "type": "string", "minLength": 1 },
+    "connector_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "system_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "connector_version": { "type": "string", "minLength": 1 },
+    "operation_id": { "type": "string", "pattern": "^[a-z][a-z0-9-]{2,95}$" },
+    "action_class": { "enum": ["READ", "RECOMMEND", "DRAFT", "REVERSIBLE_ACTION", "APPROVED_COMMIT", "PROHIBITED"] },
+    "side_effect_class": { "enum": ["NONE", "REVERSIBLE", "IRREVERSIBLE"] },
+    "reversible": { "type": "boolean" },
+    "idempotency_mode": { "enum": ["NOT_APPLICABLE", "CALLER_KEY_REQUIRED", "CONNECTOR_GUARANTEED"] },
+    "compensation_operation_id": { "type": ["string", "null"] },
+    "audit_required": { "type": "boolean" },
+    "sandbox_supported": { "type": "boolean" },
+    "maximum_data_classification": { "enum": ["PUBLIC", "INTERNAL", "CONFIDENTIAL", "RESTRICTED"] },
+    "allowed_regions": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "retention_mode": { "enum": ["ZERO", "BOUNDED", "LOCAL_ONLY"] },
+    "approval_mode": { "enum": ["NEVER", "CONDITIONAL", "ALWAYS"] },
+    "required_approver_roles": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "postcondition_observer": { "type": ["string", "null"] },
+    "state": { "enum": ["DRAFT", "ACTIVE", "DEPRECATED", "REVOKED"] },
+    "capability_digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}
