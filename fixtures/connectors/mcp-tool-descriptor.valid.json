@@ -1,0 +1,16 @@
+{
+  "schema": "fde-agent/mcp-tool-descriptor/v1",
+  "tool_id": "synthetic-erp.create-draft-case",
+  "title": "create-draft-case (synthetic-erp)",
+  "description": "Governed descriptor only; invocation requires separate policy and security decisions.",
+  "capability_digest": "79dfbafafd9b6a75e7a83791802e28542770c3262f190e7568bdc042a075ac05",
+  "connector_id": "synthetic-erp",
+  "operation_id": "create-draft-case",
+  "input_schema_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+  "output_schema_digest": "2222222222222222222222222222222222222222222222222222222222222222",
+  "exposure_mode": "DISCOVERABLE",
+  "policy_required": true,
+  "security_required": true,
+  "execution_admission": "NONE",
+  "descriptor_digest": "aaf1fbf4001287f9b627964a46231612141636a2f777c9e829c9654e516988c3"
+}
