@@ -1,0 +1,11 @@
+{
+  "schema": "fde-agent/endpoint-policy/v1",
+  "endpoint_policy_id": "endpoint-synthetic-erp",
+  "connector_id": "synthetic-erp",
+  "allowed_endpoint_refs": ["local:synth-erp"],
+  "allowed_audiences": ["connector-gateway"],
+  "allowed_regions": ["ap-east"],
+  "maximum_data_classification": "CONFIDENTIAL",
+  "deny_private_network_targets": true,
+  "policy_digest": "e22abefa1f3a1ccbc3912ac0a356f2f5330ba75eb6f8728b52d14a49f299e8b1"
+}
