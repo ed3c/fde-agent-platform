@@ -1,0 +1,18 @@
+{
+  "schema": "fde-agent/connector-result/v1",
+  "result_id": "result-connector-ap-draft-1",
+  "request_digest": "6a6b383065cf2a6c078a8942ec332938e739d3cf70a667df90c3f3d451e51784",
+  "connector_subject": "synthetic-erp@1.0.0",
+  "disposition": "SUCCEEDED",
+  "attempt": 1,
+  "observed_at": "2026-08-17T10:05:00Z",
+  "response_ref": "case:case-operation-ap-001",
+  "response_digest": "13b684fd6d6925fca0060dab5a0f91882c8fab9d0a2bb158db99801c434aefb8",
+  "postcondition_state": "VERIFIED",
+  "side_effect_state": "APPLIED",
+  "retry_after_ms": null,
+  "error_code": null,
+  "deduplicated": false,
+  "reconciliation_required": false,
+  "result_digest": "4beffa452d0acbeba2f8f148bb818bc34bcf76d5f2db45491b4827bb7f035032"
+}
