@@ -1,0 +1,15 @@
+{
+  "schema": "fde-agent/connector-receipt/v1",
+  "receipt_id": "receipt-connector-ap-draft",
+  "request_digest": "6a6b383065cf2a6c078a8942ec332938e739d3cf70a667df90c3f3d451e51784",
+  "security_decision_digest": "c5ceb4b27d4aeae5b5716180f818253cfcf632c0a3050868413710dfa7739479",
+  "capability_digest": "79dfbafafd9b6a75e7a83791802e28542770c3262f190e7568bdc042a075ac05",
+  "connector_subject": "synthetic-erp@1.0.0",
+  "started_at": "2026-08-17T10:05:00Z",
+  "finished_at": "2026-08-17T10:05:00Z",
+  "result_digest": "4beffa452d0acbeba2f8f148bb818bc34bcf76d5f2db45491b4827bb7f035032",
+  "audit_head_digest": "c06f6a2bce0873749197ecef5f4f5a95e3e569a2a4f4c3b14b9d34df0a4e32f7",
+  "outcome": "SUCCEEDED",
+  "evidence_level": "SYNTHETIC",
+  "receipt_digest": "9e71350a5403f4fb6850963618a538de3f78fef4a4c1c5cb85b98086cae0d2a0"
+}
