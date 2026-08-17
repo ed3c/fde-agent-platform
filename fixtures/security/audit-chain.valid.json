@@ -1,0 +1,30 @@
+[
+  {
+    "schema": "fde-agent/security-audit-event/v1",
+    "event_id": "audit-request",
+    "tenant_ref": "tenant-demo",
+    "sequence": 0,
+    "previous_event_digest": null,
+    "event_type": "INVOCATION_REQUESTED",
+    "subject_digest": "8c256a4795a7c56c8ecda37353940889b4e1d604b0dd4a6852c0774538ceea41",
+    "actor_ref": "service:workflow-runtime",
+    "occurred_at": "2026-08-17T10:05:00Z",
+    "outcome": "PASS",
+    "reason_codes": [],
+    "event_digest": "6e6677e7a0f7a833ef09c9e4002ac02d508613cf21af4f8987cfad0a4289577d"
+  },
+  {
+    "schema": "fde-agent/security-audit-event/v1",
+    "event_id": "audit-allow",
+    "tenant_ref": "tenant-demo",
+    "sequence": 1,
+    "previous_event_digest": "6e6677e7a0f7a833ef09c9e4002ac02d508613cf21af4f8987cfad0a4289577d",
+    "event_type": "SECURITY_ALLOWED",
+    "subject_digest": "8c256a4795a7c56c8ecda37353940889b4e1d604b0dd4a6852c0774538ceea41",
+    "actor_ref": "service:security-gateway",
+    "occurred_at": "2026-08-17T10:05:01Z",
+    "outcome": "PASS",
+    "reason_codes": [],
+    "event_digest": "089d167f5426fe4d990c8bcc3f6fcf50640962943d38c745e9e7b27ce767340a"
+  }
+]
