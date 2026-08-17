@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/connector-result/v1",
+  "title":"ConnectorResult","type":"object","additionalProperties":false,
+  "required":["schema","result_id","request_digest","connector_subject","disposition","attempt","observed_at","response_ref","response_digest","postcondition_state","side_effect_state","retry_after_ms","error_code","deduplicated","reconciliation_required","result_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/connector-result/v1"},"result_id":{"type":"string"},"request_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"connector_subject":{"type":"string"},
+    "disposition":{"enum":["SUCCEEDED","FAILED","UNKNOWN_COMPLETION","PARTIAL","RATE_LIMITED"]},"attempt":{"type":"integer","minimum":1},"observed_at":{"type":"string","format":"date-time"},
+    "response_ref":{"type":["string","null"]},"response_digest":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},
+    "postcondition_state":{"enum":["VERIFIED","FAILED","UNKNOWN","NOT_APPLICABLE"]},"side_effect_state":{"enum":["NONE","APPLIED","NOT_APPLIED","UNKNOWN","PARTIAL"]},
+    "retry_after_ms":{"type":["integer","null"],"minimum":0},"error_code":{"type":["string","null"]},"deduplicated":{"type":"boolean"},"reconciliation_required":{"type":"boolean"},"result_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
