@@ -1,0 +1,23 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/connector-receipt/v1",
+  "title":"ConnectorReceipt",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","receipt_id","request_digest","security_decision_digest","capability_digest","connector_subject","started_at","finished_at","result_digest","audit_head_digest","outcome","evidence_level","receipt_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/connector-receipt/v1"},
+    "receipt_id":{"type":"string"},
+    "request_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "security_decision_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "capability_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "connector_subject":{"type":"string"},
+    "started_at":{"type":"string","format":"date-time"},
+    "finished_at":{"type":"string","format":"date-time"},
+    "result_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "audit_head_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "outcome":{"enum":["SUCCEEDED","FAILED","UNKNOWN_COMPLETION","PARTIAL","RATE_LIMITED"]},
+    "evidence_level":{"enum":["SYNTHETIC","PRIVATE_SANDBOX","LIVE_PROVIDER"]},
+    "receipt_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
