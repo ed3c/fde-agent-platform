@@ -1,0 +1,18 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/tool-invocation/v1",
+  "title":"ToolInvocation",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","invocation_id","tenant_ref","principal_ref","workflow_digest","transition_id","policy_decision_digest","grant_digest","capability_digest","connector_id","operation_id","action_class","endpoint_ref","request_digest","operation_identity","idempotency_key_digest","requested_at","expected_audience","data_classification","region","invocation_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/tool-invocation/v1"},"invocation_id":{"type":"string"},"tenant_ref":{"type":"string"},"principal_ref":{"type":"string"},
+    "workflow_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"transition_id":{"type":"string"},"policy_decision_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "grant_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"capability_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "connector_id":{"type":"string"},"operation_id":{"type":"string"},"action_class":{"enum":["READ","RECOMMEND","DRAFT","REVERSIBLE_ACTION","APPROVED_COMMIT","PROHIBITED"]},
+    "endpoint_ref":{"type":"string"},"request_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"operation_identity":{"type":"string"},
+    "idempotency_key_digest":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},"requested_at":{"type":"string","format":"date-time"},
+    "expected_audience":{"type":"string"},"data_classification":{"enum":["PUBLIC","INTERNAL","CONFIDENTIAL","RESTRICTED"]},"region":{"type":"string"},
+    "invocation_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
