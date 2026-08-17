@@ -1,0 +1,23 @@
+{
+  "schema": "fde-agent/capability-grant/v1",
+  "grant_id": "grant-ap-draft-case",
+  "tenant_ref": "tenant-demo",
+  "principal_ref": "service:workflow-runtime",
+  "audience": "connector-gateway",
+  "capability_id": "cap-ap-draft-case",
+  "operation_id": "create-draft-case",
+  "action_class": "DRAFT",
+  "scope_ids": [
+    "workflow:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "transition:create-draft",
+    "operation:create-draft-case"
+  ],
+  "issued_at": "2026-08-17T10:00:00Z",
+  "expires_at": "2026-08-17T11:00:00Z",
+  "policy_decision_digest": "ba57a3c6147d8e02a6e5919c4d975a8d201dbd2d4c8028ed7c8d11a60ea61458",
+  "workflow_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "approval_subject_digest": null,
+  "nonce_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "revocation_state": "ACTIVE",
+  "grant_digest": "4c5fe493652e041d8faeac4e0fc9c8de5d57f6d6d2b822c9e75296738b70a392"
+}
