@@ -1,0 +1,63 @@
+{
+  "schema": "fde-agent/workflow-spec/v1",
+  "workflow_spec_id": "contract-only-workflow",
+  "version": "1.0.0",
+  "tenant_ref": "tenant-demo",
+  "state": "COMPILED",
+  "generated_at": "2026-08-17T00:00:00Z",
+  "source_subjects": {
+    "process_twin_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "context_pack_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "digital_employee_spec_digest": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "policy_subjects": ["policy:demo/v1"],
+    "policy_request_digests": ["dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"],
+    "policy_decision_digests": ["eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"],
+    "connector_capability_digests": ["ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"],
+    "eval_pack_subjects": ["eval-pack:workflow-contract/v1"],
+    "model_profile_subject": "model-profile:synthetic/v1"
+  },
+  "trigger": {
+    "trigger_id": "manual-contract-check",
+    "type": "MANUAL",
+    "source": "synthetic",
+    "event_type": null,
+    "deduplication_key_template": "{{tenant_ref}}:{{request_id}}"
+  },
+  "states": [
+    {"state_id":"received","kind":"INITIAL","owner_role":"workflow-owner","terminal":false},
+    {"state_id":"completed","kind":"TERMINAL_SUCCESS","owner_role":"workflow-owner","terminal":true},
+    {"state_id":"failed","kind":"TERMINAL_FAILURE","owner_role":"workflow-owner","terminal":true}
+  ],
+  "transitions": [
+    {
+      "transition_id":"recommend-route","from":"received","to":"completed","executor_class":"MODEL",
+      "action_id":null,"operation_id":null,"operation_identity_template":null,"capability_digest":null,"action_class":"RECOMMEND",
+      "preconditions":["context-ready"],"postconditions":["recommendation-created"],"allowed_tool_ids":[],"prohibited_tool_ids":["payment.transfer"],
+      "policy_subjects":[],"required_evidence_subjects":["bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"],
+      "model_responsibilities":["RECOMMEND"],"approval":{"mode":"NEVER","required_roles":[],"expires_after_seconds":null},
+      "retry":{"max_attempts":1,"backoff_seconds":0,"requires_idempotency":false},"timeout_seconds":30,
+      "postcondition_observer_operation_id":null,"compensation_transition_id":null,"escalation_role":"workflow-owner","on_unknown_completion":"NOT_APPLICABLE"
+    },
+    {
+      "transition_id":"fail-closed","from":"received","to":"failed","executor_class":"DETERMINISTIC",
+      "action_id":null,"operation_id":null,"operation_identity_template":null,"capability_digest":null,"action_class":"NONE",
+      "preconditions":["validation-failed"],"postconditions":["workflow-failed"],"allowed_tool_ids":[],"prohibited_tool_ids":[],
+      "policy_subjects":[],"required_evidence_subjects":["bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"],
+      "model_responsibilities":[],"approval":{"mode":"NEVER","required_roles":[],"expires_after_seconds":null},
+      "retry":{"max_attempts":1,"backoff_seconds":0,"requires_idempotency":false},"timeout_seconds":5,
+      "postcondition_observer_operation_id":null,"compensation_transition_id":null,"escalation_role":"workflow-owner","on_unknown_completion":"NOT_APPLICABLE"
+    }
+  ],
+  "controlled_cycles": [],
+  "rollback": {"strategy":"NONE","entry_transition_id":null,"trigger_conditions":[]},
+  "reconciliation": {"required":false,"unknown_completion_state":null,"observer_operation_ids":[]},
+  "release_gates": {
+    "eval_pack_subjects":["eval-pack:workflow-contract/v1"],
+    "required_policy_subjects":["policy:demo/v1"],
+    "policy_decision_digests":["eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"],
+    "human_admit_required":true
+  },
+  "workflow_digest": "bcb385636c6ba62dcf83596758fd8fa73aa9d2278b20d3e225842b427a232a3d",
+  "execution_authority": "NONE",
+  "production_admission": "HUMAN_ADMIT_REQUIRED"
+}
