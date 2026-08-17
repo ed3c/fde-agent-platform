@@ -1,0 +1,14 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/connector-request/v1",
+  "title":"ConnectorRequest","type":"object","additionalProperties":false,
+  "required":["schema","request_id","tenant_ref","workflow_digest","transition_id","security_invocation_digest","security_decision_digest","capability_digest","connector_id","connector_version","operation_id","operation_identity","idempotency_key_digest","endpoint_ref","input_ref","input_digest","requested_at","deadline_at","request_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/connector-request/v1"},"request_id":{"type":"string"},"tenant_ref":{"type":"string"},
+    "workflow_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"transition_id":{"type":"string"},
+    "security_invocation_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"security_decision_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"capability_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "connector_id":{"type":"string"},"connector_version":{"type":"string"},"operation_id":{"type":"string"},"operation_identity":{"type":"string"},
+    "idempotency_key_digest":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},"endpoint_ref":{"type":"string"},"input_ref":{"type":"string"},"input_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "requested_at":{"type":"string","format":"date-time"},"deadline_at":{"type":"string","format":"date-time"},"request_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
