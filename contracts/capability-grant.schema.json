@@ -1,0 +1,19 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/capability-grant/v1",
+  "title":"CapabilityGrant",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","grant_id","tenant_ref","principal_ref","audience","capability_id","operation_id","action_class","scope_ids","issued_at","expires_at","policy_decision_digest","workflow_digest","approval_subject_digest","nonce_digest","revocation_state","grant_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/capability-grant/v1"},
+    "grant_id":{"type":"string"},"tenant_ref":{"type":"string"},"principal_ref":{"type":"string"},"audience":{"type":"string"},
+    "capability_id":{"type":"string"},"operation_id":{"type":"string"},
+    "action_class":{"enum":["READ","RECOMMEND","DRAFT","REVERSIBLE_ACTION","APPROVED_COMMIT","PROHIBITED"]},
+    "scope_ids":{"type":"array","minItems":3,"uniqueItems":true,"items":{"type":"string"}},
+    "issued_at":{"type":"string","format":"date-time"},"expires_at":{"type":"string","format":"date-time"},
+    "policy_decision_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"workflow_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "approval_subject_digest":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},"nonce_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "revocation_state":{"enum":["ACTIVE","REVOKED","EXPIRED"]},"grant_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
