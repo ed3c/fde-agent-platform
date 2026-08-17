@@ -1,0 +1,21 @@
+{
+  "schema": "fde-agent/connector-request/v1",
+  "request_id": "connector-ap-draft",
+  "tenant_ref": "tenant-demo",
+  "workflow_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "transition_id": "create-draft",
+  "security_invocation_digest": "8c256a4795a7c56c8ecda37353940889b4e1d604b0dd4a6852c0774538ceea41",
+  "security_decision_digest": "c5ceb4b27d4aeae5b5716180f818253cfcf632c0a3050868413710dfa7739479",
+  "capability_digest": "79dfbafafd9b6a75e7a83791802e28542770c3262f190e7568bdc042a075ac05",
+  "connector_id": "synthetic-erp",
+  "connector_version": "1.0.0",
+  "operation_id": "create-draft-case",
+  "operation_identity": "operation-ap-001",
+  "idempotency_key_digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "endpoint_ref": "local:synth-erp",
+  "input_ref": "synthetic:payload-ap-001",
+  "input_digest": "a238325b439fd0929b0bc7d98e15c6b58810bd9cae55b2aef5e24596ef1e6e50",
+  "requested_at": "2026-08-17T10:05:00Z",
+  "deadline_at": "2026-08-17T10:10:00Z",
+  "request_digest": "6a6b383065cf2a6c078a8942ec332938e739d3cf70a667df90c3f3d451e51784"
+}
