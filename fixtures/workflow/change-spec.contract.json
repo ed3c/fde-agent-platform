@@ -1,0 +1,62 @@
+{
+  "schema": "fde-agent/change-spec/v1",
+  "change_spec_id": "change-contract-candidate",
+  "tenant_ref": "tenant-demo",
+  "workflow_spec_digest": "bcb385636c6ba62dcf83596758fd8fa73aa9d2278b20d3e225842b427a232a3d",
+  "state": "CANDIDATE",
+  "source_request": {
+    "requester_identity_ref": "user:workflow-owner",
+    "requester_verified": false,
+    "requester_roles": ["workflow-owner"],
+    "request_text_digest": "1111111111111111111111111111111111111111111111111111111111111111",
+    "natural_language_present": true
+  },
+  "requested_delta": [
+    {
+      "operation": "REPLACE",
+      "target_path": "/transitions/recommend-route/escalation_role",
+      "candidate_value_digest": "2222222222222222222222222222222222222222222222222222222222222222"
+    }
+  ],
+  "affected_node_ids": ["received"],
+  "unresolved_questions": ["What is the effective date?"],
+  "unresolved_contradiction_ids": [],
+  "blast_radius": {
+    "workflow_count": 1,
+    "state_count": 1,
+    "transition_count": 1,
+    "action_classes": ["RECOMMEND"],
+    "tenant_scope": "SINGLE_TENANT"
+  },
+  "reversibility": "FULL",
+  "policy_impact_subjects": ["policy:demo/v1"],
+  "required_tests": ["workflow-contracts"],
+  "required_approvals": ["workflow-owner"],
+  "shadow_plan": {
+    "required": true,
+    "fixture_subjects": ["fixture:workflow-contract/v1"],
+    "divergence_threshold": 0
+  },
+  "canary_plan": {
+    "maximum_action_class": "RECOMMEND",
+    "maximum_traffic_percent": 0,
+    "human_takeover_required": true
+  },
+  "rollback_plan": {
+    "required": true,
+    "strategy": "HUMAN_ONLY",
+    "trigger_conditions": ["blocking-eval-failed"]
+  },
+  "exact_source_digests": [
+    "bcb385636c6ba62dcf83596758fd8fa73aa9d2278b20d3e225842b427a232a3d",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+    "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+    "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+  ],
+  "candidate_digest": "b9641e9ef599d206a4287053df16a3cfe8180f8a2563de8aa337e366ed725082",
+  "execution_authority": "NONE",
+  "production_admission": "HUMAN_ADMIT_REQUIRED"
+}
