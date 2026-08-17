@@ -1,0 +1,13 @@
+{
+  "schema": "fde-agent/tool-security-decision/v1",
+  "decision_id": "security-invoke-ap-draft-case",
+  "invocation_digest": "8c256a4795a7c56c8ecda37353940889b4e1d604b0dd4a6852c0774538ceea41",
+  "grant_digest": "4c5fe493652e041d8faeac4e0fc9c8de5d57f6d6d2b822c9e75296738b70a392",
+  "capability_digest": "79dfbafafd9b6a75e7a83791802e28542770c3262f190e7568bdc042a075ac05",
+  "outcome": "ALLOW",
+  "reason_codes": [],
+  "effective_action_class": "DRAFT",
+  "expires_at": "2026-08-17T10:06:00.000Z",
+  "decision_digest": "c5ceb4b27d4aeae5b5716180f818253cfcf632c0a3050868413710dfa7739479",
+  "execution_admission": "ELIGIBLE_CANDIDATE"
+}
