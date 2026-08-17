@@ -1,0 +1,9 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/mcp-tool-descriptor/v1",
+  "title":"McpToolDescriptor","type":"object","additionalProperties":false,
+  "required":["schema","tool_id","title","description","capability_digest","connector_id","operation_id","input_schema_digest","output_schema_digest","exposure_mode","policy_required","security_required","execution_admission","descriptor_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/mcp-tool-descriptor/v1"},"tool_id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"capability_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"connector_id":{"type":"string"},"operation_id":{"type":"string"},"input_schema_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"output_schema_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"exposure_mode":{"enum":["DESCRIPTOR_ONLY","DISCOVERABLE"]},"policy_required":{"const":true},"security_required":{"const":true},"execution_admission":{"const":"NONE"},"descriptor_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}
