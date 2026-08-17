@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { connectorFixture } from './connector-fixture.mjs';
+import { createInMemoryCaseAdapter } from '../src/connectors/adapters/in-memory-case-adapter.mjs';
+import { invokeConnector,reconcileConnectorResult } from '../src/connectors/gateway.mjs';
+
+test('synthetic draft write emits result, receipt, and audit chain',async()=>{const f=connectorFixture();const adapter=createInMemoryCaseAdapter();const out=await invokeConnector({...f,adapter,auditChain:[]});assert.equal(out.result.disposition,'SUCCEEDED');assert.equal(out.result.side_effect_state,'APPLIED');assert.equal(out.receipt.outcome,'SUCCEEDED');assert.equal(out.auditChain.length,2)});
+test('duplicate delivery does not duplicate the side effect',async()=>{const f=connectorFixture();const adapter=createInMemoryCaseAdapter();await invokeConnector({...f,adapter,auditChain:[]});const second=await invokeConnector({...f,adapter,auditChain:[]});assert.equal(second.result.disposition,'SUCCEEDED');assert.equal(second.result.deduplicated,true);assert.equal(adapter.snapshot().cases.size,1)});
+test('timeout after commit enters reconciliation, never blind retry',async()=>{const f=connectorFixture();const adapter=createInMemoryCaseAdapter({faultMode:'TIMEOUT_AFTER_COMMIT'});const out=await invokeConnector({...f,adapter,auditChain:[]});assert.equal(out.result.disposition,'UNKNOWN_COMPLETION');assert.equal(out.result.reconciliation_required,true);const reconciled=await reconcileConnectorResult({request:f.request,priorResult:out.result,adapter,auditChain:out.auditChain,now:'2026-08-17T10:05:10Z'});assert.equal(reconciled.disposition,'SUCCEEDED');assert.equal(adapter.snapshot().cases.size,1)});
+test('rate limit reports no side effect',async()=>{const f=connectorFixture();const adapter=createInMemoryCaseAdapter({faultMode:'RATE_LIMIT'});const out=await invokeConnector({...f,adapter,auditChain:[]});assert.equal(out.result.disposition,'RATE_LIMITED');assert.equal(out.result.side_effect_state,'NOT_APPLIED');assert.equal(out.result.retry_after_ms,250)});
