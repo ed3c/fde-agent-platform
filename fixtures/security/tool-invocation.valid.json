@@ -1,0 +1,23 @@
+{
+  "schema": "fde-agent/tool-invocation/v1",
+  "invocation_id": "invoke-ap-draft-case",
+  "tenant_ref": "tenant-demo",
+  "principal_ref": "service:workflow-runtime",
+  "workflow_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "transition_id": "create-draft",
+  "policy_decision_digest": "ba57a3c6147d8e02a6e5919c4d975a8d201dbd2d4c8028ed7c8d11a60ea61458",
+  "grant_digest": "4c5fe493652e041d8faeac4e0fc9c8de5d57f6d6d2b822c9e75296738b70a392",
+  "capability_digest": "79dfbafafd9b6a75e7a83791802e28542770c3262f190e7568bdc042a075ac05",
+  "connector_id": "synthetic-erp",
+  "operation_id": "create-draft-case",
+  "action_class": "DRAFT",
+  "endpoint_ref": "local:synth-erp",
+  "request_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "operation_identity": "operation-ap-001",
+  "idempotency_key_digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "requested_at": "2026-08-17T10:05:00Z",
+  "expected_audience": "connector-gateway",
+  "data_classification": "CONFIDENTIAL",
+  "region": "ap-east",
+  "invocation_digest": "8c256a4795a7c56c8ecda37353940889b4e1d604b0dd4a6852c0774538ceea41"
+}
