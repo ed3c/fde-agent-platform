@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/security-audit-event/v1",
+  "title":"SecurityAuditEvent",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","event_id","tenant_ref","sequence","previous_event_digest","event_type","subject_digest","actor_ref","occurred_at","outcome","reason_codes","event_digest"],
+  "properties":{
+    "schema":{"const":"fde-agent/security-audit-event/v1"},"event_id":{"type":"string"},"tenant_ref":{"type":"string"},"sequence":{"type":"integer","minimum":0},
+    "previous_event_digest":{"type":["string","null"],"pattern":"^[a-f0-9]{64}$"},
+    "event_type":{"enum":["INVOCATION_REQUESTED","SECURITY_ALLOWED","SECURITY_DENIED","CONNECTOR_COMPLETED","CONNECTOR_UNKNOWN","RECONCILIATION_REQUIRED"]},
+    "subject_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"actor_ref":{"type":"string"},"occurred_at":{"type":"string","format":"date-time"},
+    "outcome":{"enum":["PASS","FAIL","UNKNOWN"]},"reason_codes":{"type":"array","uniqueItems":true,"items":{"type":"string"}},"event_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"}
+  }
+}

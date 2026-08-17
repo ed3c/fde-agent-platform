@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://fde-agent-platform.dev/contracts/tool-security-decision/v1",
+  "title":"ToolSecurityDecision",
+  "type":"object",
+  "additionalProperties":false,
+  "required":["schema","decision_id","invocation_digest","grant_digest","capability_digest","outcome","reason_codes","effective_action_class","expires_at","decision_digest","execution_admission"],
+  "properties":{
+    "schema":{"const":"fde-agent/tool-security-decision/v1"},"decision_id":{"type":"string"},
+    "invocation_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"grant_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},"capability_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "outcome":{"enum":["ALLOW","DENY"]},"reason_codes":{"type":"array","uniqueItems":true,"items":{"type":"string"}},
+    "effective_action_class":{"enum":["READ","RECOMMEND","DRAFT","REVERSIBLE_ACTION","APPROVED_COMMIT","PROHIBITED"]},
+    "expires_at":{"type":"string","format":"date-time"},"decision_digest":{"type":"string","pattern":"^[a-f0-9]{64}$"},
+    "execution_admission":{"enum":["ELIGIBLE_CANDIDATE","DENIED"]}
+  }
+}
