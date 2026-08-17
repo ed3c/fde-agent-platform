@@ -87,15 +87,18 @@ The Shadow Architect is read-only. It records material architecture deltas, fals
 - Tech Lead verdict: synthetic control-plane mechanics reach an in-memory Connector result; the complete FDE delivery loop is not closed.
 - Real closure gaps: executable Eval, durable runtime, release/canary, Outcome Ledger, observability, Workbench/engagement/operations, model/learning, private/live provider, Git Town/Forgejo and customer evidence.
 - Source verdict: 260-step flow, 10,000 expert actions, regional uplift, unit economics, ROI and Varick SFT/RL remain source-reported or synthetic analogues.
-- Documentation repair: #94 updates current truth, directory State Machines, product DAG, closure matrix, Gate table and actual PR #5–#91 index from exact Stage B4 terminal.
+- Documentation repair: PR #95 updates current truth, directory State Machines, product DAG, closure matrix, Gate table and actual PR #5–#91 index from the exact Stage B4 terminal.
 - Falsifiers: existing directory marked planned; absent path marked implemented; Draft/local synthetic marked admitted; source claim marked reproduced; product code changed by docs atom.
 - Provider event: first oversized closure-matrix blob write was refused; a smaller equivalent matrix was created. Record first attempt as `FAILED_TOOL`, not a product/test failure.
-- Current intervention: `RECONCILE_BEFORE_NEXT_STEP_L2` until the #94 Draft PR is published and exact changed paths are re-observed.
+- Exact documentation publication before this closure update: `d6ab7f96870633a6fc8ff492f1b25c4c2d5098b0`, tree `feaa330090004e659089ab7059236f04dd2fb5f0`, nine Markdown paths only.
+- PR: #95 open Draft. Documentation Gate: #96 open. Monitor #93: closed completed.
+- Provider checks at the published head: zero commit-status records and zero workflow runs; disposition `NOT_EXERCISED`.
+- Final intervention: `CONTINUE_WITH_WARNINGS_L1`; documentation implementation is complete and review admission remains open at #96.
 
 ## Current Shadow recommendation
 
 ```text
-1. publish and review #94 as documentation-only;
+1. review #95 as documentation-only and keep #96 open until repository/Human admission;
 2. keep Gates #54/#64/#75/#81/#92 open until local reviewed convergence exists;
 3. complete I31-K/E/D before claiming #10 integration-ready;
 4. execute I10 → I17 → I11 → I18/#42 → I21 for the shortest synthetic closure path;
