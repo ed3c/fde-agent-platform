@@ -1,64 +1,107 @@
-# Shadow Architecture Ledger
+# Shadow Architecture ledger
 
-The Shadow Architect is read-only. It records material architecture deltas and does not become a second implementation writer.
+The Shadow Architect is read-only. It records material architecture deltas, falsifiers, observed evidence, and intervention levels. It never becomes a second implementation writer.
 
-## 2026-08-16 — SKILL_DISCOVERY
+## Stable evidence boundaries
 
-- Delta: `PROCEDURAL_GROUNDING_DELTA`.
-- Newly possible: repository work can be decomposed into evidence-bound stacked PRs with a public/private forge boundary.
-- Must remain true: mentioning Git Town, dual forge, or Shadow Architecture cannot be reported as runtime execution.
-- Falsifier: any receipt marks local Forgejo or Git Town `PASS` without a bound local checkout/executable/provider observation.
-- Intervention: `L2 REVIEW` before first GitHub mutation; closed by explicit runtime identity and evidence downgrade.
-
-## 2026-08-16 — ARCHITECTURE_CHOICE
-
-- Delta: `AUTHORITY_DELTA`, `OWNERSHIP_DELTA`, `EVIDENCE_DELTA`.
-- Newly possible: a public compiler may combine reusable and private configuration concepts.
-- Must remain true: private input may only restrict public authority and cannot enter the public repository.
-- Falsifier: an overlay grants an undeclared/prohibited action or a live tenant artifact is tracked.
-- Intervention: `CONTINUE_WITH_WARNINGS_L1`; deterministic negative controls are required before first green.
-
-## 2026-08-16 — PUBLICATION_BOUNDARY
-
-- Delta: `EXTERNAL_SIDE_EFFECT_DELTA`.
-- Newly possible: GitHub connector can create issues, branches, commits, and draft PRs.
-- Must remain true: connector publication does not imply local Forgejo execution, Git Town sync, Actions success, merge approval, or production promotion.
-- Falsifier: PR prose or receipt collapses those lanes.
-- Intervention: `L2 REVIEW` before each PR; all PRs remain draft and Human merge authority is preserved.
-
-## Current blockers
-
-| Boundary | State | Effect |
+| Boundary | Current state | Effect |
 |---|---|---|
-| Local Forgejo | ABSENT | Blocks dual-forge implementation proof, not reversible public bootstrap code. |
-| Git Town executable | ABSENT | Blocks live sync/restack claim. Branch graph may still be declared. |
-| GitHub Actions trusted check | NOT_EXERCISED | Blocks exact-head CI claim. |
-| Production runtime | NOT_IMPLEMENTED | Blocks deployment and business-outcome claims. |
+| Open Draft PR Stack | observed | proves GitHub objects, not admission/merge |
+| Full reviewed convergence tree | not exercised | blocks integrated-stage claim |
+| Git Town executable / Worktrees | not exercised / absent | blocks sync/restack and lease-runtime claims |
+| Local Forgejo / private lane | absent | blocks dual-forge and private Overlay claims |
+| Exact-head GitHub Actions | not exercised | blocks CI claim |
+| Live identity / provider / MCP | not exercised | blocks live authority/provider claim |
+| Durable runtime / release | not implemented | blocks runtime/release closure |
+| Outcome / organization | not implemented | blocks ROI/FDE delivery closure |
+| Merge / release / production | Human admission required | never model-owned |
 
-## 2026-08-16 — FIRST_GREEN (Stack 00)
+## 2026-08-16 — procedural grounding
 
-- Verified: repository governance checker passes; planted auto-resolve, Forgejo-evidence overclaim, and private-overlay mutations are killed.
-- Not proved: a live Git Town executable, linked worktree lease, local Forgejo issue/PR, GitHub Actions runner, remote ancestry, or merge readiness.
-- Remaining assumption: GitHub tree publication will contain byte-equivalent files to the tested workspace; bind this through a tree identity comparison before creating the draft PR.
+- Delta: `PROCEDURAL_GROUNDING`, `OWNERSHIP`, `EVIDENCE`.
+- Finding: repository work can bind exact shared procedures without copying Skill bodies.
+- Must remain true: `skills-shared` owns Skill bodies; consumer owns bindings, task packets, product code and receipts.
+- Falsifiers: local `SKILL.md`, copied frontmatter/body, mutable shared subject, omitted procedure delta.
+- Intervention: `CONTINUE_WITH_WARNINGS_L1` after deterministic no-vendoring controls.
+
+## 2026-08-16 — publication boundary
+
+- Delta: `EXTERNAL_SIDE_EFFECT` limited to GitHub metadata and Git objects.
+- Must remain true: GitHub publication is not Git Town, Forgejo, Actions, merge or production.
+- Falsifier: PR prose collapses evidence lanes.
+- Intervention: `CONTINUE_WITH_WARNINGS_L1`; all PRs remain Draft.
+
+## 2026-08-17 — directory DAG and Stack index
+
+- Delta: `OWNERSHIP`, `LIFECYCLE`, `TRACEABILITY`.
+- Finding: the first operating map made Issue→directory→State Machine→atom routing possible.
+- Material repair: removed the former `#45 → #29/#32 → #8 → #45` cycle by keeping semantic readiness upstream of persistence/observability.
+- Remaining problem: the documentation snapshot later became stale while Stage B1–B4 implementation advanced.
+- Intervention at that time: `RECONCILE_BEFORE_NEXT_STEP_L2`.
+
+## 2026-08-17 — Stage B1 Data Readiness and Process Twin
+
+- Delta: `EVIDENCE_STATE`, `TEMPORAL_MODEL`, `PROCESS_GRAPH`.
+- Newly possible: critical data can fail closed; process views and contradictions remain distinct; controlled cycles are explicit.
+- Falsifiers killed on synthetic fixtures: missing critical field, semantic drift reuse, view collapse, uncontrolled cycle, digest tampering.
+- Must remain true: Process Twin has `execution_authority: NONE`; contradictions are not automatically resolved.
+- Not proved: real source completeness, persistence, Process Owner approval, customer process truth.
+- Gate: #64 open.
 - Intervention: `CONTINUE_WITH_WARNINGS_L1`.
 
-## 2026-08-16 — PROCEDURAL_GROUNDING (Stack 03)
+## 2026-08-17 — Stage B2 Context and Policy
 
-- Delta: `PROCEDURAL_GROUNDING_DELTA`, `OWNERSHIP_DELTA`, `EVIDENCE_DELTA`.
-- Newly possible: every unfinished issue can be directed by exact shared procedures without copying those procedures into the consumer repository.
-- Must remain true: `skills-shared` exclusively owns Skill bodies; this repository owns only exact bindings, task packets, product adapters, tests, and receipts.
-- Falsifiers exercised: local `skills/**/SKILL.md`, copied canonical Skill frontmatter under another filename, mutable shared subject, and an issue template missing procedure-delta fields.
-- Observation: all four planted mutations fail closed; the full local snapshot reports 21/21 tests passing and all governance/contract checks passing.
-- Not proved: live retrieval at execution time, local Git Town, Forgejo, GitHub Actions, merge, release, or production behavior.
-- Intervention: `FIRST_GREEN → CONTINUE_WITH_WARNINGS_L1`. Product Stack 04 may proceed after PR review without promoting any absent live lane.
+- Delta: `CONTEXT_SELECTION`, `AUTHORITY_CANDIDATE`, `APPROVAL`.
+- Newly possible: required evidence and contradictions cannot be hidden for budget; policy is deny-by-default with exact approval and separation of duties.
+- Falsifiers killed: contradiction suppression, context truncation, default allow, SoD bypass, stale/altered decision.
+- Must remain true: Context has no execution authority; Policy `ALLOW` is eligible candidate only.
+- Not proved: production retrieval, live identity, credentials, connector behavior.
+- Gate: #75 open.
+- Intervention: `CONTINUE_WITH_WARNINGS_L1`.
 
-## 2026-08-17 — DIRECTORY_DAG_AND_STACK_INDEX (Stack 04)
+## 2026-08-17 — Stage B3 WorkflowSpec and ChangeSpec
 
-- Delta: `OWNERSHIP_DELTA`, `LIFECYCLE_DELTA`, `PROCEDURAL_GROUNDING_DELTA`, `EVIDENCE_DELTA`.
-- Newly possible: an Agent can route from an Issue to the exact directory owner, local state machine, consumed/emitted subjects, dependency DAG, and molecular Stack-PR atom before writing code.
-- Must remain true: the README hierarchy is a consumer navigation/index layer; `system-contract.json`, open Issues, exact Git/PR state, and runtime receipts remain the underlying authorities.
-- Material finding: the former Data Readiness dependency shape could create `#45 → #29/#32 → #8 → #45`. The architecture separates upstream semantic/readiness contracts from downstream persistence/observability adapters to restore a DAG.
-- Falsifier: a planned path is described as implemented; two sibling atoms receive overlapping writer leases; an Issue is absent from the index; or a diagram contradicts its owning Issue/contract.
-- Evidence available: GitHub readback of repository files, Issues, PRs, branches, and parent ancestry. Local Markdown/test/no-vendoring execution is not exercised by this connector runtime.
-- Not proved: Git Town restack, Worktree leases, local Forgejo, exact-head Actions, integrated product behavior, provider runtime, production safety, or business outcomes.
-- Intervention: `RECONCILE_BEFORE_NEXT_STEP_L2` until the documentation branch is reviewed and #8/#45 dependency metadata is updated; after closure, `CONTINUE_WITH_WARNINGS_L1`.
+- Delta: `WORKFLOW_STATE`, `FAILURE_SURFACE`, `CHANGE_GOVERNANCE`.
+- Newly possible: states, transitions, retry, timeout, compensation, reconciliation, rollback, controlled cycles and Human gates are statically representable.
+- Falsifiers killed: arbitrary code, unknown transition, retry without idempotency, missing compensation, model-owned hard control, unbounded loop, stale policy subject, digest tampering.
+- Must remain true: natural language stops at ChangeSpec candidate; Workflow/Change have no execution authority; production admission remains Human-owned.
+- Not proved: durable execution, replay, Shadow, canary, provider behavior.
+- Gate: #81 open.
+- Intervention: `CONTINUE_WITH_WARNINGS_L1`.
+
+## 2026-08-17 — Stage B4 Security and Connector/MCP
+
+- Delta: `TRUST_BOUNDARY`, `EXTERNAL_EFFECT`, `AUDIT`, `RECONCILIATION`.
+- Newly possible: short-lived reference grants, logical endpoint allowlists, exact security decisions, typed connector requests/results/receipts, descriptor-only MCP and in-memory side effects.
+- Falsifiers killed: revoked grant replay, arbitrary endpoint, audience mismatch, cross-tenant confused deputy, audit tampering, input subject tampering, endpoint substitution, blind retry after unknown completion.
+- Must remain true: Policy/Security `ALLOW` remain candidates; MCP carries no endpoint/grant/callback; synthetic evidence cannot become provider evidence.
+- Observed repair: two benign contents-API writes failed; exact reviewed blobs were published through ordinary Git object fast-forward without weakening assertions.
+- Not proved: live identity/grants, real MCP transport, external provider transaction semantics, durable runtime or production.
+- Gate: #92 open.
+- Intervention: `CONTINUE_WITH_WARNINGS_L1`.
+
+## 2026-08-17 — repository-wide closure reconciliation (#93/#94)
+
+- Delta: `DOCUMENTATION_TRUTH`, `CLOSURE_CLASSIFICATION`, `ISSUE_DAG`, `STACK_TRACEABILITY`.
+- Material finding: `AGENTS.md`, root/source READMEs, Architecture SSOT, Issue DAG, Stack Index and Shadow Ledger still described most Stage B1–B4 modules as planned.
+- Tech Lead verdict: synthetic control-plane mechanics reach an in-memory Connector result; the complete FDE delivery loop is not closed.
+- Real closure gaps: executable Eval, durable runtime, release/canary, Outcome Ledger, observability, Workbench/engagement/operations, model/learning, private/live provider, Git Town/Forgejo and customer evidence.
+- Source verdict: 260-step flow, 10,000 expert actions, regional uplift, unit economics, ROI and Varick SFT/RL remain source-reported or synthetic analogues.
+- Documentation repair: PR #95 updates current truth, directory State Machines, product DAG, closure matrix, Gate table and actual PR #5–#91 index from the exact Stage B4 terminal.
+- Falsifiers: existing directory marked planned; absent path marked implemented; Draft/local synthetic marked admitted; source claim marked reproduced; product code changed by docs atom.
+- Provider event: first oversized closure-matrix blob write was refused; a smaller equivalent matrix was created. Record first attempt as `FAILED_TOOL`, not a product/test failure.
+- Exact documentation publication before this closure update: `d6ab7f96870633a6fc8ff492f1b25c4c2d5098b0`, tree `feaa330090004e659089ab7059236f04dd2fb5f0`, nine Markdown paths only.
+- PR: #95 open Draft. Documentation Gate: #96 open. Monitor #93: closed completed.
+- Provider checks at the published head: zero commit-status records and zero workflow runs; disposition `NOT_EXERCISED`.
+- Final intervention: `CONTINUE_WITH_WARNINGS_L1`; documentation implementation is complete and review admission remains open at #96.
+
+## Current Shadow recommendation
+
+```text
+1. review #95 as documentation-only and keep #96 open until repository/Human admission;
+2. keep Gates #54/#64/#75/#81/#92 open until local reviewed convergence exists;
+3. complete I31-K/E/D before claiming #10 integration-ready;
+4. execute I10 → I17 → I11 → I18/#42 → I21 for the shortest synthetic closure path;
+5. run #13/#33/#44/#46 separately for real private/live evidence;
+6. never promote source claims or synthetic analogues to customer/runtime/business truth.
+```

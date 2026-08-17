@@ -1,6 +1,6 @@
-# FDE Issue Dependency DAG
+# FDE Issue dependency DAG
 
-This file is the repository-owned dependency index for unfinished work. It does not replace Issue bodies. It gives Agents a cycle-free starting graph, highlights convergence nodes, and identifies which work may be parallelized.
+This file owns repository-specific dependency classification. Issue bodies own detailed requirements. Exact Git/PR state and runtime receipts own observed facts.
 
 Canonical procedure authority:
 
@@ -8,104 +8,133 @@ Canonical procedure authority:
 ed3c/skills-shared@ec5a240fa3cbafda2c6a8bce0ae12143e0992f80
 ```
 
-Skill bodies remain external. The DAG records consumer-specific work only.
+## Edge types
 
-## Graph rules
+- **start edge** — enough stable interface exists to begin a child contract atom.
+- **completion edge** — child cannot claim its integration complete until the parent implementation and Gate are admitted.
+- **integration edge** — path-disjoint work may proceed but must meet at an explicit `X` convergence node.
+- **review edge** — read-only monitor/evidence relation; never grants a writer lease.
+- **live edge** — requires local/private/provider evidence unavailable to a GitHub-only runtime.
+- **Human edge** — merge, release, production, legal, financial or organizational admission.
 
-- A **hard edge** means the child consumes an admitted contract or implementation from the parent.
-- An **integration edge** means the work can start on its own locked contract but cannot complete its integration gate until the referenced subject exists.
-- A **review edge** is read-only and never grants a writer lease.
-- A node with several hard parents requires an explicit convergence task/branch. Git Town does not make a branch have several parents by implication.
-- Global documentation/procedure gates #14 and #47 precede product implementation but do not serialize every path-disjoint module.
-- A branch/PR is created only after its Issue task packet compiles without cycles, lease overlap, or missing interface locks.
+A branch name or a green leaf does not satisfy a completion edge.
 
-## High-level DAG
+## Actual implementation DAG through Stage B4
 
 ```mermaid
 flowchart TD
-  subgraph F[Foundation]
-    I2["#2 control plane"] --> I3["#3 contracts"] --> I4["#4 compiler"] --> I14["#14 skills-shared binding"] --> I47["#47 operating map"]
+  F["Foundation PR #5→#6→#7→#24→#48"]
+  F --> R["I15-C PR #49"]
+  F --> O["I25-C PR #50"]
+  F --> ING["I26-C PR #51"]
+  F --> EV["I31-C PR #52"]
+  F --> SRC["I23-D/E PR #53"]
+
+  ING --> D["I45 C/K/E PR #55→#56→#57"]
+  R --> X58["X58 PR #59"]
+  D --> X58
+  X58 --> P["I8 C/K/E/D PR #60→#61→#62→#63"]
+
+  P --> C["I27 C/K/E PR #66→#67→#68"]
+  P --> Y["I9 C/K/E PR #69→#70→#71"]
+  C --> X72["X72 PR #73"]
+  Y --> X72
+  R --> X72
+  EV --> X72
+
+  X72 --> W["I28 C/K/E/D PR #77→#78→#79→#80"]
+  W --> S["I22 C/K/E/D PR #83→#84→#85→#86"]
+  S --> G["I30 C/K/A/E/D PR #87→#88→#89→#90→#91"]
+```
+
+Admission remains open at #54, #64, #75, #81 and #92.
+
+## Semantic product DAG
+
+```mermaid
+flowchart TD
+  subgraph GOV[Foundation and delivery]
+    I2["#2 governance"] --> I3["#3 public contracts"] --> I4["#4 compiler"] --> I14["#14 shared binding"] --> I47["#47 operating map"]
     I14 --> I13["#13 Git Town / Dual Forge live lane"]
+    I47 --> I94["#94 current integration map"]
+    I93["#93 Shadow review"] -. review .-> I94
   end
 
-  subgraph B[Business and engagement]
-    I47 --> I25["#25 opportunity + baseline"]
-    I47 --> I26["#26 evidence ingestion"]
+  subgraph BUS[Business and engagement]
+    I47 --> I25["#25 opportunity / baseline"]
+    I47 --> I26["#26 ingestion"]
+    I15["#15 registries"] --> I18["#18 Workbench"]
     I25 --> I42["#42 engagement lifecycle"]
     I26 --> I42
-    I18["#18 FDE Workbench"] --> I42
-    I20["#20 managed operations"] --> I42
+    I18 --> I42
+    I20["#20 operations"] --> I42
   end
 
-  subgraph E[Evidence and data]
-    I26 --> I45["#45 data readiness"]
-    I26 --> I8["#8 Evidence Graph / Process Twin"]
-    I45 --> I8
-    I8 --> I27["#27 ContextPack"]
-    I8 --> I29["#29 PostgreSQL data plane"]
+  subgraph DAT[Evidence and data]
+    I26 --> I45["#45 readiness"] --> I8["#8 Process Twin"] --> I27["#27 Context"]
+    I8 --> I29["#29 persistence"]
   end
 
-  subgraph C[Composition and authority]
-    I14 --> I15["#15 registries"]
-    I8 --> I9["#9 policy/capability"]
-    I27 --> I28["#28 WorkflowSpec / ChangeSpec"]
-    I15 --> I28
+  subgraph AUT[Composition and authority]
+    I14 --> I15
+    I8 --> I9["#9 Policy"]
+    I27 --> I28["#28 Workflow/Change"]
     I9 --> I28
-    I9 --> I22["#22 security"]
-    I22 --> I30["#30 connector SDK"]
+    I15 --> I28
+    I9 --> I22["#22 Security"]
+    I28 --> I22
+    I22 --> I30["#30 Connector/MCP"]
     I28 --> I30
     I18 --> I44["#44 identity/approval"]
   end
 
-  subgraph R[Verification, runtime, release]
+  subgraph RUN[Eval, runtime, release]
     I47 --> I31["#31 Eval platform"]
     I28 --> I10["#10 durable simulator"]
-    I9 --> I10
     I22 --> I10
+    I30 --> I10
     I31 --> I10
-    I10 --> I17["#17 Change Controller"]
+    I10 --> I17["#17 release controller"]
     I30 --> I17
+    I31 --> I17
+    I32["#32 observability"] --> I17
     I17 --> I40["#40 durable adapter"]
     I29 --> I40
     I30 --> I40
     I40 --> I41["#41 production readiness"]
   end
 
-  subgraph O[Observability, outcome, operations]
+  subgraph OUT[Outcome, operations and learning]
     I10 --> I11["#11 Outcome Ledger"]
-    I29 --> I32["#32 observability/audit"]
-    I31 --> I32
     I10 --> I32
+    I29 --> I32
+    I31 --> I32
     I11 --> I32
     I11 --> I20
     I18 --> I20
-    I20 --> I36["#36 commercial contracts"]
+    I20 --> I36["#36 commercial"]
     I25 --> I36
-  end
-
-  subgraph L[Models and learning]
-    I11 --> I12["#12 model release train"]
-    I8 --> I16["#16 expert trace mining"]
+    I8 --> I16["#16 expert traces"]
     I15 --> I16
-    I16 --> I19["#19 portfolio learning"]
+    I16 --> I19["#19 productization"]
     I10 --> I19
     I11 --> I19
-    I12 --> I35["#35 governed improvement"]
+    I12["#12 model release"] --> I35["#35 improvement"]
     I19 --> I35
     I31 --> I35
     I32 --> I35
   end
 
-  subgraph P[Products and enterprise admission]
-    I15 --> I38["#38 Role Pack catalog"]
+  subgraph LIVE[Product and live admission]
+    I15 --> I38["#38 Role Packs"]
     I16 --> I38
     I28 --> I38
     I31 --> I38
-    I15 --> I39["#39 API/SDK/CLI"]
+    I15 --> I39["#39 API/SDK"]
     I28 --> I39
     I30 --> I39
     I31 --> I39
-    I13 --> I33["#33 private Overlay resolver"]
+    I13 --> I33["#33 private Overlay"]
     I15 --> I33
     I22 --> I33
     I29 --> I33
@@ -113,22 +142,17 @@ flowchart TD
     I30 --> I34
     I33 --> I34
     I34 --> I40
-    I41 --> I43["#43 assurance packs"]
+    I41 --> I43["#43 assurance"]
     I32 --> I43
     I34 --> I44
-    I20 --> I37["#37 Internal FDE/adoption"]
-    I18 --> I37
-    I31 --> I37
-    I13 --> I46["#46 private connector canary"]
+    I13 --> I46["#46 live canary"]
     I17 --> I46
     I30 --> I46
     I33 --> I46
     I40 --> I46
     I41 --> I46
     I44 --> I46
-    I45 --> I46
     I42 --> I21["#21 synthetic AP capstone"]
-    I28 --> I21
     I17 --> I21
     I11 --> I21
     I31 --> I21
@@ -136,104 +160,104 @@ flowchart TD
     I33 --> I21
   end
 
-  I14 --> I23["#23 external evidence validation"]
+  I11 --> I12
+  I14 --> I23["#23 external evidence"]
 ```
 
-The Mermaid view intentionally shows the main semantic edges. The table below is the complete direct-dependency index used for task planning.
+## Current Issue status overlay
 
-## Complete direct-dependency index
+| Issue group | Current state | Admission/completion note |
+|---|---|---|
+| #2 #3 #4 #14 #47 | `IMPLEMENTED_DRAFT` | Foundation PRs remain open/unmerged. #94 repairs stale routing docs. |
+| #15 #25 #26 #31 | `PARTIAL_CONTRACT` | C atom exists; core/Eval/handoff atoms remain. Gate #54 open. |
+| #23 | `PARTIAL_CONTRACT` / external evidence lane | ledger exists; independent artifacts/reproduction absent. |
+| #45 | `SYNTHETIC_CLOSED` | C/K/E exist; Gate #64 and live data/persistence remain. |
+| #8 | `SYNTHETIC_CLOSED` | C/K/E/D exist; Gate #64 and real Process Owner evidence remain. |
+| #27 #9 | `SYNTHETIC_CLOSED` | C/K/E exist; Gate #75 open. |
+| #28 | `SYNTHETIC_CLOSED` | C/K/E/D exist; Gate #81 open. |
+| #22 #30 | `SYNTHETIC_CLOSED` | Security C/K/E/D and Connector C/K/A/E/D exist; Gate #92 open. |
+| #10–#12 #16–#21 #29 #32–#44 #46 | `OPEN_DESIGN` or `BLOCKED_LIVE_SUBSTRATE` | no complete implementation Stack. |
+| #13 #33 #44 #46 live portions | `BLOCKED_LIVE_SUBSTRATE` | requires local/private/provider authorization and receipts. |
+| #54 #64 #75 #81 #92 | `INTEGRATION_ADMISSION_OPEN` | must not be bypassed by downstream prose. |
+| #93 | read-only review | closes after #94 documentation handoff. |
+| #94 | documentation implementation | docs-only branch from Stage B4 terminal. |
 
-| Issue | Work unit | Hard start dependencies |
-|---:|---|---|
-| #1 | Epic / Outcome Delivery OS | - |
-| #2 | Repository control plane | #1 |
-| #3 | Public contracts | #2 |
-| #4 | Role + Overlay compiler | #3 |
-| #8 | Evidence Graph + Process Twin | #14, #47, #26, #45, #4 |
-| #9 | Policy + Connector Capability Registry | #8, #14 |
-| #10 | Durable simulator + Runtime Receipts | #9, #14, #22, #28, #31 |
-| #11 | Outcome Ledger + unit economics | #10, #14 |
-| #12 | Model registry + release train | #11, #14 |
-| #13 | Git Town / Dual Forge live receipts | #1, #14 |
-| #14 | External skills-shared binding | #1, #4 |
-| #15 | Artifact registries | #14, #4 |
-| #16 | Expert-behavior Skill mining | #8, #14, #15 |
-| #17 | Release safety + Change Controller | #9, #10, #14, #22, #28, #31, #32 |
-| #18 | Human FDE Workbench | #14, #15 |
-| #19 | Portfolio learning/productization | #10, #11, #14, #16 |
-| #20 | Managed operations | #10, #11, #14, #18 |
-| #21 | Synthetic AP capstone | #8, #9, #10, #11, #14, #15, #17, #18, #22, #25, #26, #27, #28, #30, #31, #32, #33, #42, #45 |
-| #22 | Security control plane | #9, #14 |
-| #23 | External case evidence validation | #14 |
-| #25 | Opportunity triage + Outcome Charter | #14, #47 |
-| #26 | Evidence ingestion/redaction/disambiguation | #14, #47 |
-| #27 | Provenance ContextPack | #8, #14, #26 |
-| #28 | WorkflowSpec / ChangeSpec compiler | #8, #9, #14, #15, #27 |
-| #29 | PostgreSQL data plane | #8, #14, #15, #22 |
-| #30 | Connector SDK + MCP boundary | #9, #14, #22, #28 |
-| #31 | Multi-layer Eval platform | #14, #47 |
-| #32 | Observability + audit linkage | #10, #11, #14, #22, #29, #31 |
-| #33 | Private Tenant Overlay resolver | #13, #14, #15, #22, #29 |
-| #34 | Deployment profiles | #12, #14, #22, #29, #30, #33 |
-| #35 | Governed improvement/post-training loop | #12, #14, #16, #19, #31, #32 |
-| #36 | Commercial outcome contracts | #11, #14, #20, #25 |
-| #37 | Internal FDE/adoption | #14, #18, #20, #25, #31 |
-| #38 | Role Pack catalog | #14, #15, #16, #28, #31 |
-| #39 | Developer API/SDK/CLI | #14, #15, #28, #30, #31 |
-| #40 | Durable runtime adapter | #10, #14, #22, #29, #30, #32, #34 |
-| #41 | Production readiness/resilience | #14, #20, #22, #29, #30, #31, #32, #40 |
-| #42 | Engagement lifecycle | #14, #18, #20, #25, #26, #8, #28, #17, #31, #32 |
-| #43 | Assurance evidence packs | #14, #18, #20, #22, #29, #31, #32, #41 |
-| #44 | Enterprise identity/approval adapter | #14, #18, #22, #29, #32, #34 |
-| #45 | Data-for-Agent readiness | #14, #26, #47 |
-| #46 | First private connector canary | #13, #14, #17, #22, #30, #31, #32, #33, #34, #40, #41, #44, #45 |
-| #47 | Agent operating map / README Stack index | #14 / PR #24 |
+## Start vs completion dependencies
+
+| Child | May start contract work when | Cannot complete until |
+|---|---|---|
+| #10 Durable simulator | exact Workflow/Security/Connector/Eval contracts are locked | Gate #92 admitted, executable #31 K/E exists, full convergence tests pass |
+| #17 Release Controller | ChangeSpec/WorkflowSpec and runtime/release interfaces are locked | #10, #31, #32 and Gate #92 admitted; replay/Shadow/canary faults pass |
+| #11 Outcome Ledger | runtime receipt contract is locked | #10 executable receipts and baseline/measurement sources exist |
+| #18 Workbench | Registry/process/approval interfaces are locked | identity, engagement/release/outcome subjects are integrated |
+| #21 AP capstone | domain contracts and fixtures may be designed | #10/#11/#17/#18/#31/#32 plus private-reference boundaries converge |
+| #29 Persistence | Process Twin/Registry/Security contracts are locked | migrations, tenancy, restore and integration Evals pass |
+| #32 Observability | exact receipt identities are locked | persistence/runtime/outcome/Eval subjects exist and correlation tests pass |
+| #38 Role Packs | Registry/Workflow common contracts are locked | expert traces, Eval packs and catalog lifecycle converge |
+| #39 API/SDK | read/validate/compile contracts are locked | Registry/Workflow/Connector/Eval integration and authority separation pass |
+| #46 Live canary | public/private/live contracts are designed | local forge, private resolver, identity, runtime, resilience and Human authorization all exist |
+
+## Admission Gate DAG
+
+```text
+#54 Contract Foundation
+  ↓
+#64 Data Readiness + Process Twin
+  ↓
+#75 Context + Policy convergence
+  ↓
+#81 WorkflowSpec / ChangeSpec
+  ↓
+#92 Security + Connector/MCP
+  ↓
+future #10/#17/#21 gates
+```
+
+A later Draft Stack may exist before an earlier Gate closes, but its evidence remains provisional and exact-parent-bound.
 
 ## Convergence nodes
 
-These nodes have several prerequisite subjects and must receive an explicit Tech Lead convergence packet:
-
-| Node | Required convergence |
+| Node | Required exact convergence |
 |---|---|
-| #28 WorkflowSpec/ChangeSpec | approved Process Twin + ContextPack + registry + policy/capability contracts |
-| #30 Connector SDK | WorkflowSpec action contract + security + policy/capability |
-| #10 Durable simulator | WorkflowSpec semantics + policy + security + Eval contract |
-| #17 Change Controller | simulator + policy/security + WorkflowSpec/ChangeSpec + Eval + observability contracts |
-| #32 Observability | runtime + outcome + persistence + security + Eval identities |
-| #40 Durable adapter | simulator + persistence + connector + observability + deployment profile |
-| #42 Engagement lifecycle | business, evidence, design, release, operations, and Eval gate contracts |
-| #21 AP capstone | complete synthetic vertical slice across business/evidence/design/runtime/outcome |
-| #46 Live canary | exact local/private/GitHub, identity, connector, runtime, resilience, and authorization evidence |
+| #28 | Process Twin + Context + Registry + Policy/Capability + Eval contracts |
+| #30 | Workflow action contract + Policy + Security + ConnectorCapability |
+| #10 | Workflow semantics + Security/Connector result semantics + executable Eval contract |
+| #17 | runtime + ChangeSpec + Security/Connector + Eval + Observability |
+| #32 | runtime + persistence + security + Eval + Outcome identities |
+| #40 | simulator + persistence + connector + observability + deployment profile |
+| #42 | business, evidence, target design, release, operations and Eval gates |
+| #21 | full synthetic business/evidence/design/runtime/outcome/Workbench slice |
+| #46 | public/private Git, identity, connector, runtime, resilience and authorization evidence |
 
-A convergence branch does not merge semantic conflicts automatically. It binds exact admitted parent commits, runs integration/mutation gates, and remains Draft until Human admission.
+Convergence never auto-resolves semantic conflict. One writer binds admitted exact subjects and re-runs all required tests/mutations.
 
-## Parallelizable sibling groups
+## Parallelizable next atoms
 
-The following work may start as sibling contract branches after #14 and #47, provided path leases are disjoint:
+After review of exact parent contracts, these are path-disjoint candidates:
 
-- #25 opportunity/Outcome Charter contracts;
-- #26 ingestion/provenance contracts;
-- #31 EvalPack/receipt base contracts;
-- #15 registry lifecycle contracts;
-- #23 evidence/source ledger;
-- documentation or synthetic fixture work that does not alter shared schemas.
+```text
+I31-K/E/D  executable Eval plane
+I15-K/E/D  Registry core
+I25-K/E/D  discovery/baseline core
+I26-K/E/D  ingestion core
+I29-C       persistence contract
+```
 
-Later implementation siblings include:
+`I10-C` may be prepared against locked contracts, but `I10-K/E/D` completion remains blocked on executable I31 and Gate #92 admission.
 
-- provider-neutral model routing (#12) and role catalog content (#38) after their contracts exist;
-- Workbench UI surfaces (#18) and developer API surfaces (#39) after backend authority contracts are locked;
-- individual Role Packs under #38 after the common catalog contract;
-- deployment-profile validators under #34 after the common profile contract.
+## Review-only and source lanes
 
-## Review-only lanes
-
-- Shadow Architecture observes and records deltas; it does not write Builder paths.
-- #23 may change architecture only through a new Issue/contract revision; source claims do not directly mutate product code.
-- Assurance #43 maps evidence but does not self-certify or promote.
-- Human/legal/financial reviewers own waivers, settlement, merge, release, and production.
+- Shadow Architecture issues are read-only and never write Builder paths.
+- #23 records source evidence; it cannot mutate product code or promote interview claims.
+- #43 maps assurance evidence; it cannot certify compliance.
+- Human/legal/financial/security owners retain waivers, settlement, merge, release and production authority.
 
 ## Cycle prevention
 
-The Data-for-Agent contract (#45) is upstream of Process Twin (#8). Its core semantic/readiness work therefore depends on #26 and the documentation/procedure gates, **not** on the persistent Process Twin data plane or observability implementation. PostgreSQL (#29) and observability (#32) are downstream adapters/integration consumers. This separation prevents the former `#45 → #29/#32 → #8 → #45` cycle.
+- #45 semantic/readiness contracts remain upstream of #8.
+- #29 persistence and #32 observability are downstream adapters, not prerequisites for defining readiness semantics.
+- #31 common Eval contract may start early, but module-specific Evals consume their module subjects.
+- #10 runtime consumes Connector results; #30 does not consume #10.
+- #17 release consumes runtime; runtime must not depend on release promotion.
 
-Any newly discovered cycle is `DAG_CYCLE` and blocks branch allocation until interfaces are split or the edge is reclassified.
+Any new cycle is `DAG_CYCLE` and blocks branch allocation until the interface or edge type is corrected.
