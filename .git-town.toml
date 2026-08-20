@@ -1,0 +1,18 @@
+# Repository policy for the admitted Git Town 24.0.0 line.
+# A live executable is not admitted until its host-owned provenance/checksum
+# receipt exists. This checked-in file defines policy, not runtime proof.
+
+[branches]
+main = "main"
+perennials = []
+
+[sync]
+feature-strategy = "rebase"
+perennial-strategy = "ff-only"
+auto-resolve = false
+push-branches = false
+tags = false
+
+[ship]
+strategy = "squash-merge"
+delete-tracking-branch = true

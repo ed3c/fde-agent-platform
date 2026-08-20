@@ -1,0 +1,14 @@
+node_modules/
+coverage/
+dist/
+.receipts/
+.worktrees/
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+
+tenant-overlays-private/
+customer-data/
+local-forgejo/

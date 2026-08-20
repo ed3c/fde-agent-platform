@@ -1,0 +1,45 @@
+name: Agentic work packet
+description: Contract-first implementation unit for one branch writer
+body:
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Non-goals
+    validations:
+      required: true
+  - type: input
+    id: base
+    attributes:
+      label: Exact base SHA
+    validations:
+      required: true
+  - type: textarea
+    id: paths
+    attributes:
+      label: Path lease and forbidden paths
+    validations:
+      required: true
+  - type: textarea
+    id: invariants
+    attributes:
+      label: Hard invariants
+    validations:
+      required: true
+  - type: textarea
+    id: evals
+    attributes:
+      label: Verification and negative controls
+    validations:
+      required: true
+  - type: textarea
+    id: rollback
+    attributes:
+      label: Rollback subject and Human-owned operations
+    validations:
+      required: true

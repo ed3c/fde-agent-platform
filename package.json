@@ -1,0 +1,14 @@
+{
+  "name": "@ed3c/fde-agent-platform",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Outcome-delivery control plane for governed FDE digital employees.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "check": "node scripts/check-governance.mjs"
+  }
+}

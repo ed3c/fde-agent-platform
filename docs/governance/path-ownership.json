@@ -1,0 +1,75 @@
+{
+  "schema": "fde-agent-platform/path-ownership/v1",
+  "default_policy": "DENY_UNLEASED_WRITE",
+  "branches": [
+    {
+      "issue": "github#2",
+      "branch": "agent/00-bootstrap-control-plane",
+      "parent": "main",
+      "write": [
+        "AGENTS.md",
+        "README.md",
+        ".editorconfig",
+        ".gitignore",
+        ".git-town.toml",
+        ".github/**",
+        "docs/architecture/**",
+        "docs/governance/**",
+        "scripts/check-governance.mjs",
+        "test/governance.test.mjs",
+        "package.json"
+      ]
+    },
+    {
+      "issue": "github#3",
+      "branch": "agent/01-contracts",
+      "parent": "agent/00-bootstrap-control-plane",
+      "write": [
+        "contracts/**",
+        "fixtures/valid/**",
+        "fixtures/invalid/**",
+        "scripts/check-contracts.mjs",
+        "scripts/lib/contract-validation.mjs",
+        "test/contracts.test.mjs",
+        "package.json"
+      ]
+    },
+    {
+      "issue": "github#4",
+      "branch": "agent/02-role-overlay-compiler",
+      "parent": "agent/01-contracts",
+      "write": [
+        "src/compiler/**",
+        "src/cli.mjs",
+        "fixtures/expected/**",
+        "test/compiler.test.mjs",
+        "README.md",
+        "package.json"
+      ]
+    }
+  ],
+  "public_forbidden_prefixes": [
+    "tenant-overlays-private/",
+    "customer-data/",
+    "local-forgejo/",
+    ".receipts/"
+  ],
+  "forbidden_data_classes": [
+    "credentials",
+    "tokens",
+    "private-keys",
+    "cookies",
+    "browser-profiles",
+    "device-sessions",
+    "customer-pii",
+    "live-commercial-contracts"
+  ],
+  "human_owned": [
+    "semantic-conflict-resolution",
+    "merge",
+    "permission-change",
+    "secret-setup",
+    "release-promotion",
+    "production-deployment"
+  ]
+}
