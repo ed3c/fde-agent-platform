@@ -1,0 +1,39 @@
+{
+  "schema": "fde-agent/policy-request/v1",
+  "request_id": "ap-draft-case",
+  "tenant_ref": "tenant-demo",
+  "digital_employee_spec_digest": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "context_pack_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "policy_subjects": ["policy:ap/v1"],
+  "action_id": "create-draft-exception",
+  "operation_id": "create-draft-case",
+  "requested_action_class": "DRAFT",
+  "caller_identity_ref": "user:ap-operator",
+  "caller_roles": ["ap-operator"],
+  "authenticated": true,
+  "requested_at": "2026-08-16T00:00:00Z",
+  "data_classification": "CONFIDENTIAL",
+  "region": "ap-east",
+  "operation_identity": "op-ap-001",
+  "idempotency_key_present": true,
+  "approval": {
+    "status": "NONE",
+    "approver_identity_ref": null,
+    "approver_role": null,
+    "subject_digest": null,
+    "expires_at": null
+  },
+  "authority_envelope": {
+    "allowed_action_ids": ["create-draft-exception"],
+    "prohibited_action_ids": ["post-payment"],
+    "maximum_action_class": "DRAFT",
+    "system_capabilities": [
+      {
+        "system_id": "erp",
+        "operation_ids": ["create-draft-case"]
+      }
+    ],
+    "required_separation_of_duties": true,
+    "model_decision_permitted": false
+  }
+}
